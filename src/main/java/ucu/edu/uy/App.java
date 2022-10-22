@@ -10,9 +10,35 @@ import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
 import jade.domain.FIPAException;
 
-public class App {
+import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+public class App extends Application {
+    @FXML
+    private AnchorPane ap;
+
     public static void main(String[] args)
             throws InterruptedException, FIPAException, StaleProxyException, ControllerException {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/javaFX/fxml/BasicFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        startPlatform();
+    }
+
+    public static void startPlatform() throws ControllerException {
         Runtime rt = Runtime.instance();
 
         // 1) create a platform (main container+DF+AMS)
@@ -38,7 +64,6 @@ public class App {
         getAgent(mainContainer, "john");
         firstAgent.start();
         firstAgent.activate();
-
     }
 
     private static void getAgent(ContainerController mainContainer, String name) throws ControllerException {
