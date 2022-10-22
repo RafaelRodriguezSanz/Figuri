@@ -242,18 +242,28 @@ public class BookBuyerAgent extends Agent {
 Tambien existen los metodos `searchUntilFound()` y `createSubscriptionMessage()`
 
 				   
-				   Belief -> Los Datos del estado actual del universo en la BD
+Belief -> Los Datos del estado actual del universo en la BD
+	
 Desires -> Lo que se quiere obtener.
+	
 Goal -> Son los Desires que se van a buscar.
+	
 Intentions-> Es la busqueda de los Goals.
+	
 Plans -> Acciones para poder cumplir los Goals.
+	
 Events -> Son los gatillos que hacen ejecutar los planes.
 
 
 
 Belief => Datos de figuritas (No exactamente la realidad)
+	
 Desires => Completar el album
+	
 Goal => Figuritas que nos faltan
+	
 Intentions => Figuritas que queremos
+	
 Plans => Publicar, intercambiar, ofertar, query, etc.
+	
 Events => Publicaciones, etc.
