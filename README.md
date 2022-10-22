@@ -126,6 +126,18 @@ AID id = new AID(nickname, AID.ISLOCALNAME);
 ## Execute
 Para ejecutar un agente hay que usar:
 `java -jar jade.boot nickname:AgentJarName`
+
+`java -cp lib\jade.jar jade.Boot -gui -local-port 1111`
+
+Similarly it is possible to make JADE use a different host name/address with respect to that read from the underlying network stack by means of the -local-host <host-name-or-address> option. This is typically useful when dealing with network environments where hosts can be reached only by specifying hostnames including the network domain (e.g. jade.tilab.com instead of just avalon) as exemplified below
+
+`java -cp lib\jade.jar jade.Boot -gui -local-host jade.tilab.com`
+More info: (Starting Agent)[https://jade.tilab.com/documentation/tutorials-guides/jade-administration-tutorial/starting-jade/]	
+Distributed Systems: (Distributed Plataform)[https://jade.tilab.com/documentation/tutorials-guides/jade-administration-tutorial/creating-a-distributed-platform/]
+Remote Plataforms: (Platforms)[https://jade.tilab.com/documentation/tutorials-guides/jade-administration-tutorial/running-multiple-jade-platforms/]
+Administration: (Admin)[https://jade.tilab.com/doc/administratorsguide.pdf]	
+Tecnical Data: (Technical)[https://jade.tilab.com/doc/programmersguide.pdf]
+(Java Doc)[https://jade.tilab.com/doc/api/index.html]
 ## Delete
 Se ejecuta el metodo `doDelete()` para matar a un agente. Se ejecuta tambien el metodo `takeDown()` para hacer un clean-up de los cosas del agente previo al `doDelete()`
 ## Arguments
