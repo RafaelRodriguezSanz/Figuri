@@ -267,3 +267,7 @@ Intentions => Figuritas que queremos
 Plans => Publicar, intercambiar, ofertar, query, etc.
 	
 Events => Publicaciones, etc.
+
+---
+
+(Create Platform)[https://startjade.gitlab.io/CreatePlatform/]
