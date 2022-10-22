@@ -1,0 +1,29 @@
+<!-- https://stackoverflow.com/questions/3080437/jdk-tools-jar-as-maven-dependency -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd">
+          <profiles>
+            <profile>
+              <id>windows_profile</id>
+              <activation>
+                <os>
+                  <family>Windows</family>
+                </os>
+              </activation>
+              <properties>
+                <toolsjar>${java.home}/../lib/tools.jar</toolsjar>
+              </properties>
+            </profile>
+            <profile>
+              <id>osx_profile</id>
+              <activation>
+                <os>
+                  <family>mac</family>
+                </os>
+              </activation>
+              <properties>
+                <toolsjar>${java.home}/../Classes/classes.jar</toolsjar>
+              </properties>
+            </profile>
+          </profiles>
+</settings>
