@@ -1,0 +1,9 @@
+@echo off
+call echo Compilando el proyecto...
+call cmd\install
+call echo Creando el paquete...
+call cmd\package
+call echo Ejecutando App...
+call cmd\runJavaFX
+call echo App ejecutada!
+call echo #----------------------------------------#

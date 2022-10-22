@@ -1,1 +1,1 @@
-curl -H "Accept: exe" --location --request GET "https://download.oracle.com/otn/java/jdk/8u341-b10/424b9da4b48848379167015dcc250d8d/jdk-8u341-windows-i586.exe/" --output JavaInstaller.exe
+curl -H "Accept: exe" --location --request GET "https://javadl.oracle.com/webapps/download/GetFile/1.8.0_341-b10/424b9da4b48848379167015dcc250d8d/windows-i586/jdk-8u341-windows-i586.exe" --output JavaInstaller.exe 
