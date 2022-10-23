@@ -1,1 +1,1 @@
-java -jar target\Main.jar
+java -jar target\Main.jar  

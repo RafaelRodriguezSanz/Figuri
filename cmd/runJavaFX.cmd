@@ -1,0 +1,1 @@
+java -jar "./target/Main.jar" --module-path "%JAVA_HOME%\jre\lib\ext\jfxrt.jar" --add-modules=javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls  
