@@ -29,6 +29,7 @@
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
+    <github.global.server>github</github.global.server>
   </properties>
 
   <repositories>
@@ -37,6 +38,13 @@
       <url>https://jade.tilab.com/maven/</url>
     </repository>
   </repositories>
+  <distributionManagement>
+    <repository>
+        <id>github</id>
+        <name>Central GITHUB Repository</name>
+        <url>file://${project.build.directory}/mvn-repo</url>
+    </repository>
+</distributionManagement>
   <build>
     <resources>
       <resource>
@@ -47,6 +55,41 @@
       </resource>
     </resources>
     <plugins>
+        <plugin>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.8.1</version>
+            <configuration>
+                <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+            </configuration>
+        </plugin>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.11</version>
+        <configuration>
+            <message>Release ${project.version}</message>  <!-- git commit message -->
+            <noJekyll>false</noJekyll>                                  <!-- disable webpage processing -->
+            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+            <branch>refs/heads/release/V${project.version}</branch>                       <!-- remote branch name -->
+            <includes>
+              <include>./target/Agent-Installer_*.exe</include>
+              <include>./target/Agent.exe</include>
+              <include>./target/Agent.jar</include>
+              <include>./target/Main.exe</include>
+              <include>./target/Main.jar</include>
+            </includes>
+            <repositoryName>Figuri</repositoryName>      <!-- github repo name -->
+            <repositoryOwner>RafaelRodriguezSanz</repositoryOwner>    <!-- github username  -->
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>deploy</phase>
+          </execution>
+        </executions>
+    </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <executions>
