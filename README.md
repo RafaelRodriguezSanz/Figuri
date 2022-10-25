@@ -270,4 +270,6 @@ Events => Publicaciones, etc.
 
 ---
 
-(Create Platform)[https://startjade.gitlab.io/CreatePlatform/]
+[Create Platform](https://startjade.gitlab.io/CreatePlatform/)
+
+[TAREAS] (https://trello.com/invite/b/lwPewQOw/ATTIb400d355b369fcca55ff7289ce40dcc75EC73DC4/db)
