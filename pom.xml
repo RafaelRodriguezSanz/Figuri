@@ -184,7 +184,7 @@
       <plugin>
         <groupId>com.github.adrianboimvaser</groupId>
         <artifactId>postgresql-maven-plugin</artifactId>
-        <version>0.3-338f4c</version>
+        <version>0.2</version>
       </plugin>
       <plugin>
         <groupId>com.akathist.maven.plugins.launch4j</groupId>
@@ -255,9 +255,10 @@
       <plugin>
         <groupId>io.github.fvarrui</groupId>
         <artifactId>javapackager</artifactId>
-        <version>0.9.4</version>
+        <version>1.6.2</version>
         <executions>
           <execution>
+            <id>Agent installer exe</id>
             <phase>package</phase>
             <goals>
               <goal>package</goal>
@@ -269,8 +270,10 @@
               <generateSetup>true</generateSetup>
               <generateMsi>true</generateMsi>
               <generateMsm>true</generateMsm>
+              
+              <generateInstaller>true</generateInstaller>
               <url>https://github.com/RafaelRodriguezSanz/Figuri/</url>
-              <mainClass>ucu.edu.uy.App</mainClass>
+              <mainClass>ucu.edu.uy.Agents.AgenteTest</mainClass>
               <platform>windows</platform>
               <bundleJre>true</bundleJre>
               <!-- <iconFile>src/main/deploy/package/windows/icon.ico</iconFile> -->
@@ -280,8 +283,64 @@
               </winconfig>
             </configuration>
           </execution>
+          <execution>
+            <id>linux-bundler</id>
+            <phase>package</phase>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <configuration>
+                <mainClass>ucu.edu.uy.App</mainClass>
+                <version/>
+                <name>Main</name>
+                <displayName>Main</displayName>
+                <!-- <bundleJre>true</bundleJre>
+                <customizedJre>false</customizedJre> -->
+                <generateInstaller>true</generateInstaller>
+                <platform>linux</platform>
+                <runnableJar>target/Main.jar</runnableJar>
+                <jrePath>${env.JAVA_HOME}/jre</jrePath>
+                <additionalResources>
+                    <additionalResource>src/main/resources</additionalResource>
+                    <additionalResource>src/main/resources/javaFX/fxml</additionalResource>
+                </additionalResources>
+                <linuxConfig>
+                  <!-- <pngFile>path/to/icon.png</pngFile>
+                  <generateAppImage>true|false</generateAppImage> -->
+                  <generateDeb>true</generateDeb>
+              </linuxConfig>
+            </configuration>
+        </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+            <execution>
+                <id>id.package.ant</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+                <configuration>
+                    <target>
+                      <move file="${project.build.directory}/Agent-Installer_1.0.exe" tofile="${project.build.directory}/Installers/Agent.exe" />
+                      <move file="${project.build.directory}/Main_1.0.deb" tofile="${project.build.directory}/Installers/Main.deb" />
+                      <move file="${project.build.directory}/Agent.jar" tofile="${project.build.directory}/Executables/Agent.jar" />
+                      <move file="${project.build.directory}/Main.jar" tofile="${project.build.directory}/Executables/Main.jar" />
+                      <delete file="${project.build.directory}/Agent-Installer-1.0-runnable.jar"/>
+                      <delete file="${project.build.directory}/Main_1.0.changes"/>
+                      <delete file="${project.build.directory}/Main_1.0.rpm"/>
+                      <delete file="${project.build.directory}/Main_1.0.exe"/>
+                      <delete file="${project.build.directory}/Main.exe"/>
+                      <delete file="${project.build.directory}/Agent.exe"/>
+                    </target>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
     </plugins>
   </build>
   <profiles>
@@ -318,39 +377,6 @@
                 <argument>-conf</argument>
                 <argument>src/main/resources/jade-agent-container.properties</argument>
               </arguments>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>com.aerse.maven</groupId>
-            <artifactId>deb-maven-plugin</artifactId>
-            <version>1.9</version>
-            <executions>
-              <execution>
-                <id>package</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>package</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <unixUserId>ubuntu</unixUserId>
-              <unixGroupId>ubuntu</unixGroupId>
-              <installDir>/usr/bin</installDir>
-              <osDependencies>
-                <openjdk-8-jdk></openjdk-8-jdk>
-                <nginx></nginx>
-                <logrotate>>=3.7.8</logrotate>
-                <imagemagick></imagemagick>
-                <maven></maven>
-              </osDependencies>
-              <javaServiceWrapper>true</javaServiceWrapper>
-              <fileSets>
-                <fileSet>
-                  <source>./target/Main.jar</source>
-                  <target>./target</target>
-                </fileSet>
-              </fileSets>
             </configuration>
           </plugin>
         </plugins>
