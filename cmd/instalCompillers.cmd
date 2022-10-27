@@ -1,1 +1,1 @@
-powershell start cmd -v runas -ExecutionPolicy Bypass -Command "choco install -y innosetup wixtoolset"
+powershell start cmd -v runas -ExecutionPolicy Bypass -Command "choco install -y innosetup wixtoolset --force"
