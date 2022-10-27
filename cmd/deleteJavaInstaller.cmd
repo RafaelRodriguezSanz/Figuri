@@ -1,0 +1,1 @@
+del /f JavaInstaller.exe  

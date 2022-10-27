@@ -26,4 +26,11 @@
               </properties>
             </profile>
           </profiles>
+          <servers>
+            <server>
+              <id>github</id>
+              <username>RafaelRodriguezSanz</username>
+              <password>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</password>
+            </server>
+          </servers>
 </settings>
