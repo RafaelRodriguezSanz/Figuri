@@ -1,1 +1,1 @@
-java -jar target\Main.jar  
+java -jar target\Executables\Main.jar -gui
