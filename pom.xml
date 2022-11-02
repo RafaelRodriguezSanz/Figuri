@@ -31,7 +31,6 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <github.global.server>github</github.global.server>
   </properties>
-
   <repositories>
     <repository>
       <id>tilab</id>
@@ -52,6 +51,9 @@
       </resource>
       <resource>
         <directory>src/main/resources/javaFX/fxml</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources/properties</directory>
       </resource>
     </resources>
     <plugins>
@@ -270,7 +272,6 @@
               <generateSetup>true</generateSetup>
               <generateMsi>true</generateMsi>
               <generateMsm>true</generateMsm>
-
               <generateInstaller>true</generateInstaller>
               <url>https://github.com/RafaelRodriguezSanz/Figuri/</url>
               <mainClass>ucu.edu.uy.Agents.AgenteTest</mainClass>
@@ -400,7 +401,6 @@
     <dependency>
       <groupId>com.tilab.jade</groupId>
       <artifactId>jade</artifactId>
-      
     </dependency>
     <dependency>
       <groupId>com.tilab.jade</groupId>
@@ -436,65 +436,61 @@
       <scope>system</scope>
       <systemPath>${env.JAVA_HOME}/jre/lib/ext/jfxrt.jar</systemPath>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-base</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics </artifactId>
       <version>12</version>
       <classifier>win</classifier>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-web</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-swing</artifactId>
       <version>12</version>
     </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.tirasa.connid</groupId>
+      <artifactId>connector-framework</artifactId>
+      <version>1.5.1.0</version>
+  </dependency>
   </dependencies>
-
-
   <dependencyManagement>
-  
-
     <dependencies>
-    
-
       <dependency>
         <groupId>com.tilab.jade</groupId>
         <artifactId>jade</artifactId>
         <version>4.5.0</version>
       </dependency>
-
     </dependencies>
-
   </dependencyManagement>
 </project>

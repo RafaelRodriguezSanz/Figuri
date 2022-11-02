@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
+        {
+            "type": "java",
+            "name": "Launch TestSQLStatement",
+            "request": "launch",
+            "mainClass": "ucu.edu.uy.TestSQLStatement",
+            "projectName": "Agent"
+        },
         {
             "type": "java",
             "name": "Launch App",
@@ -70,15 +76,12 @@
             "mainClass": "jade.Boot",
             "args": [
                 "-container",
-                // "Main-Container",
-                // "-container-name",
-                // "Container-1",
                 "-host",
                 "192.168.9.1",
                 "-port",
                 "1111",
                 "-agents",
-                "C:ucu.edu.uy.jade.Agents.AgentTest"
+                "B:ucu.edu.uy.jade.Agents.AgentTest2"
             ]
         },
         {
@@ -88,9 +91,6 @@
             "mainClass": "jade.Boot",
             "args": [
                 "-container",
-                // "Main-Container",
-                // "-container-name",
-                // "Container-1",
                 "-host",
                 "192.168.9.1",
                 "-port",
