@@ -1,4 +1,4 @@
-package ucu.edu.uy.javaFX.Controllers;
+package ucu.edu.uy.Presentacion.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -31,7 +31,6 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <github.global.server>github</github.global.server>
   </properties>
-
   <repositories>
     <repository>
       <id>tilab</id>
@@ -40,11 +39,11 @@
   </repositories>
   <distributionManagement>
     <repository>
-        <id>github</id>
-        <name>Central GITHUB Repository</name>
-        <url>file://${project.build.directory}/mvn-repo</url>
+      <id>github</id>
+      <name>Central GITHUB Repository</name>
+      <url>file://${project.build.directory}/mvn-repo</url>
     </repository>
-</distributionManagement>
+  </distributionManagement>
   <build>
     <resources>
       <resource>
@@ -53,33 +52,36 @@
       <resource>
         <directory>src/main/resources/javaFX/fxml</directory>
       </resource>
+      <resource>
+        <directory>src/main/resources/properties</directory>
+      </resource>
     </resources>
     <plugins>
-        <plugin>
-            <artifactId>maven-deploy-plugin</artifactId>
-            <version>2.8.1</version>
-            <configuration>
-                <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-            </configuration>
-        </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.1</version>
+        <configuration>
+          <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
         <version>0.11</version>
         <configuration>
-            <message>Release ${project.version}</message>  <!-- git commit message -->
-            <noJekyll>false</noJekyll>                                  <!-- disable webpage processing -->
-            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
-            <branch>refs/heads/release/V${project.version}</branch>                       <!-- remote branch name -->
-            <includes>
-              <include>./target/Agent-Installer_*.exe</include>
-              <include>./target/Agent.exe</include>
-              <include>./target/Agent.jar</include>
-              <include>./target/Main.exe</include>
-              <include>./target/Main.jar</include>
-            </includes>
-            <repositoryName>Figuri</repositoryName>      <!-- github repo name -->
-            <repositoryOwner>RafaelRodriguezSanz</repositoryOwner>    <!-- github username  -->
+          <message>Release ${project.version}</message> <!-- git commit message -->
+          <noJekyll>false</noJekyll> <!-- disable webpage processing -->
+          <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory> <!-- matches distribution management repository url above -->
+          <branch>refs/heads/release/V${project.version}</branch> <!-- remote branch name -->
+          <includes>
+            <include>./target/Agent-Installer_*.exe</include>
+            <include>./target/Agent.exe</include>
+            <include>./target/Agent.jar</include>
+            <include>./target/Main.exe</include>
+            <include>./target/Main.jar</include>
+          </includes>
+          <repositoryName>Figuri</repositoryName> <!-- github repo name -->
+          <repositoryOwner>RafaelRodriguezSanz</repositoryOwner> <!-- github username  -->
         </configuration>
         <executions>
           <execution>
@@ -89,7 +91,7 @@
             <phase>deploy</phase>
           </execution>
         </executions>
-    </plugin>
+      </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <executions>
@@ -270,7 +272,6 @@
               <generateSetup>true</generateSetup>
               <generateMsi>true</generateMsi>
               <generateMsm>true</generateMsm>
-              
               <generateInstaller>true</generateInstaller>
               <url>https://github.com/RafaelRodriguezSanz/Figuri/</url>
               <mainClass>ucu.edu.uy.Agents.AgenteTest</mainClass>
@@ -287,30 +288,30 @@
             <id>linux-bundler</id>
             <phase>package</phase>
             <goals>
-                <goal>package</goal>
+              <goal>package</goal>
             </goals>
             <configuration>
-                <mainClass>ucu.edu.uy.App</mainClass>
-                <version/>
-                <name>Main</name>
-                <displayName>Main</displayName>
-                <!-- <bundleJre>true</bundleJre>
-                <customizedJre>false</customizedJre> -->
-                <generateInstaller>true</generateInstaller>
-                <platform>linux</platform>
-                <runnableJar>target/Main.jar</runnableJar>
-                <jrePath>${env.JAVA_HOME}/jre</jrePath>
-                <additionalResources>
-                    <additionalResource>src/main/resources</additionalResource>
-                    <additionalResource>src/main/resources/javaFX/fxml</additionalResource>
-                </additionalResources>
-                <linuxConfig>
-                  <!-- <pngFile>path/to/icon.png</pngFile>
+              <mainClass>ucu.edu.uy.App</mainClass>
+              <version />
+              <name>Main</name>
+              <displayName>Main</displayName>
+              <!-- <bundleJre>true</bundleJre> -->
+              <customizedJre>true</customizedJre>
+              <jrePath>${env.JAVA_HOME}/jre</jrePath>
+              <generateInstaller>true</generateInstaller>
+              <platform>linux</platform>
+              <runnableJar>target/Main.jar</runnableJar>
+              <additionalResources>
+                <additionalResource>src/main/resources</additionalResource>
+                <additionalResource>src/main/resources/javaFX/fxml</additionalResource>
+              </additionalResources>
+              <linuxConfig>
+                <!-- <pngFile>path/to/icon.png</pngFile>
                   <generateAppImage>true|false</generateAppImage> -->
-                  <generateDeb>true</generateDeb>
+                <generateDeb>true</generateDeb>
               </linuxConfig>
             </configuration>
-        </execution>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -318,29 +319,31 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <version>1.7</version>
         <executions>
-            <execution>
-                <id>id.package.ant</id>
-                <phase>package</phase>
-                <goals>
-                    <goal>run</goal>
-                </goals>
-                <configuration>
-                    <target>
-                      <move file="${project.build.directory}/Agent-Installer_1.0.exe" tofile="${project.build.directory}/Installers/Agent.exe" />
-                      <move file="${project.build.directory}/Main_1.0.deb" tofile="${project.build.directory}/Installers/Main.deb" />
-                      <move file="${project.build.directory}/Agent.jar" tofile="${project.build.directory}/Executables/Agent.jar" />
-                      <move file="${project.build.directory}/Main.jar" tofile="${project.build.directory}/Executables/Main.jar" />
-                      <delete file="${project.build.directory}/Agent-Installer-1.0-runnable.jar"/>
-                      <delete file="${project.build.directory}/Main_1.0.changes"/>
-                      <delete file="${project.build.directory}/Main_1.0.rpm"/>
-                      <delete file="${project.build.directory}/Main_1.0.exe"/>
-                      <delete file="${project.build.directory}/Main.exe"/>
-                      <delete file="${project.build.directory}/Agent.exe"/>
-                    </target>
-                </configuration>
-            </execution>
+          <execution>
+            <id>id.package.ant</id>
+            <phase>package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <move file="${project.build.directory}/Agent-Installer_1.0.exe" tofile="${project.build.directory}/Installers/Agent.exe" />
+                <move file="${project.build.directory}/Agent-Installer_1.0.msi" tofile="${project.build.directory}/Installers/Agent.msi" />
+                <move file="${project.build.directory}/Main_1.0.deb" tofile="${project.build.directory}/Installers/Main.deb" />
+                <move file="${project.build.directory}/Main_1.0.rpm" tofile="${project.build.directory}/Installers/Main.rpm" />
+                <move file="${project.build.directory}/Agent.jar" tofile="${project.build.directory}/Executables/Agent.jar" />
+                <move file="${project.build.directory}/Main.jar" tofile="${project.build.directory}/Executables/Main.jar" />
+                <delete file="${project.build.directory}/Agent-Installer-1.0-runnable.jar" />
+                <delete file="${project.build.directory}/Agent-Installer_1.0.msm" />
+                <delete file="${project.build.directory}/Main_1.0.changes" />
+                <delete file="${project.build.directory}/Main_1.0.exe" />
+                <delete file="${project.build.directory}/Main.exe" />
+                <delete file="${project.build.directory}/Agent.exe" />
+              </target>
+            </configuration>
+          </execution>
         </executions>
-    </plugin>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -398,7 +401,6 @@
     <dependency>
       <groupId>com.tilab.jade</groupId>
       <artifactId>jade</artifactId>
-      <version>4.5.0</version>
     </dependency>
     <dependency>
       <groupId>com.tilab.jade</groupId>
@@ -434,48 +436,61 @@
       <scope>system</scope>
       <systemPath>${env.JAVA_HOME}/jre/lib/ext/jfxrt.jar</systemPath>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-base</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics </artifactId>
       <version>12</version>
       <classifier>win</classifier>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-web</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
       <version>12</version>
     </dependency>
-
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-swing</artifactId>
       <version>12</version>
     </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.24</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.tirasa.connid</groupId>
+      <artifactId>connector-framework</artifactId>
+      <version>1.5.1.0</version>
+  </dependency>
   </dependencies>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.tilab.jade</groupId>
+        <artifactId>jade</artifactId>
+        <version>4.5.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

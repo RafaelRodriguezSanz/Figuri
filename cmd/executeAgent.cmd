@@ -1,1 +1,1 @@
-java -jar ./target/Agent.jar   
+java -jar target\Executables\Agent.jar -gui -platform-id MyPlatform

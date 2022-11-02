@@ -1,5 +1,7 @@
 package ucu.edu.uy;
 
+import jade.core.AID;
+import jade.core.Agent;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.core.Runtime;
@@ -8,8 +10,10 @@ import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.ControllerException;
 import jade.wrapper.StaleProxyException;
+import jade.domain.AMSService;
 import jade.domain.FIPAException;
-
+import jade.domain.FIPAAgentManagement.AMSAgentDescription;
+import jade.domain.FIPAAgentManagement.SearchConstraints;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,7 +42,7 @@ public class App extends Application {
         startPlatform();
     }
 
-    public static void startPlatform() throws ControllerException {
+    public static void startPlatform() throws ControllerException, FIPAException {
         Runtime rt = Runtime.instance();
 
         // 1) create a platform (main container+DF+AMS)

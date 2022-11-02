@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestSQLStatement",
+            "request": "launch",
+            "mainClass": "ucu.edu.uy.TestSQLStatement",
+            "projectName": "Agent"
+        },
+        {
+            "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "ucu.edu.uy.App",
@@ -53,13 +60,43 @@
         },
         {
             "type": "java",
-            "name": "Launch Agent App",
+            "name": "Launch Platform",
             "request": "launch",
             "mainClass": "jade.Boot",
-            "projectName": "jade-tutorial-agent",
             "args": [
+                "-gui",
+                "-port",
+                "1111"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Launch Agent",
+            "request": "launch",
+            "mainClass": "jade.Boot",
+            "args": [
+                "-container",
+                "-host",
+                "192.168.9.1",
+                "-port",
+                "1111",
                 "-agents",
-                "Agente1:ucu.edu.uy.jade.agents.MyAgent"
+                "B:ucu.edu.uy.jade.Agents.AgentTest2"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Launch RMA",
+            "request": "launch",
+            "mainClass": "jade.Boot",
+            "args": [
+                "-container",
+                "-host",
+                "192.168.9.1",
+                "-port",
+                "1111",
+                "-agents",
+                "RMA:jade.tools.rma.rma"
             ]
         }
     ]
