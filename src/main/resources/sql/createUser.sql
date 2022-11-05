@@ -1,1 +1,0 @@
-INSERT INTO Users VALUES (%s, %s, %s, %s, %s, %s);

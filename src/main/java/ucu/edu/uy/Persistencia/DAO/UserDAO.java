@@ -11,8 +11,8 @@ import ucu.edu.uy.Persistencia.Utils.SQL;
 public class UserDAO {
 
     public static boolean createUser(UserPO user) throws IOException, SQLException {
-        DB.getSINGLE_INSTANCE().connect("Users");
-        String query = SQL.getQuery("createUser");
+        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        String query = SQL.getQuery("DT/Users/CRUD/createUser");
         SQL.populateQuery(query,
                 String.valueOf(user.getCi()),
                 '"' + new String(user.getContrasenia()) + '"',
