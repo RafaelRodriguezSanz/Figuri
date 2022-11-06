@@ -480,9 +480,9 @@
     </dependency>
     <dependency>
       <groupId>net.tirasa.connid</groupId>
-      <artifactId>connector-framework</artifactId>
+      <artifactId>connector-framework-internal</artifactId>
       <version>1.5.1.0</version>
-  </dependency>
+  </dependency>  
   </dependencies>
   <dependencyManagement>
     <dependencies>

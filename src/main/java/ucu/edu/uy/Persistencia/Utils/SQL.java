@@ -9,8 +9,4 @@ public class SQL {
                 .useDelimiter("\\A");
         return scanner.hasNext() ? scanner.next() : "";
     }
-
-    public static void populateQuery(String query, String... values) {
-        query = String.format(query, values);
-    }
 }

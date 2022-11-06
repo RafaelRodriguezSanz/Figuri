@@ -14,14 +14,14 @@ public class Telefono {
     public Telefono(String number) {
         Validator validator = new Validator();
         number = validator.cleanNumber(number);
-        this.digitos[0] = Integer.valueOf(number.charAt(0));
-        this.digitos[1] = Integer.valueOf(number.charAt(1));
-        this.digitos[2] = Integer.valueOf(number.charAt(2));
-        this.digitos[3] = Integer.valueOf(number.charAt(3));
-        this.digitos[4] = Integer.valueOf(number.charAt(4));
-        this.digitos[5] = Integer.valueOf(number.charAt(5));
-        this.digitos[6] = Integer.valueOf(number.charAt(6));
-        this.digitos[7] = Integer.valueOf(number.charAt(7));
+        this.digitos[0] = Character.getNumericValue(number.charAt(0));
+        this.digitos[1] = Character.getNumericValue(number.charAt(1));
+        this.digitos[2] = Character.getNumericValue(number.charAt(2));
+        this.digitos[3] = Character.getNumericValue(number.charAt(3));
+        this.digitos[4] = Character.getNumericValue(number.charAt(4));
+        this.digitos[5] = Character.getNumericValue(number.charAt(5));
+        this.digitos[6] = Character.getNumericValue(number.charAt(6));
+        this.digitos[7] = Character.getNumericValue(number.charAt(7));
     }
 
     public boolean isValid() {
