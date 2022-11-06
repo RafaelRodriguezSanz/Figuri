@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<TabPane fx:id="Window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab fx:id="Figuritas" text="Figutitas">
+      <content>
+        <AnchorPane fx:id="PanelFiguritas" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Group fx:id="Figurita1" layoutX="14.0" layoutY="14.0">
+                     <children>
+                        <View fx:id="ImagenFigurita1" prefHeight="272.0" prefWidth="171.0">
+                           <bottom>
+                              <Group fx:id="BotonesFigurita1" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="EliminarFigurita1" layoutX="1.0" mnemonicParsing="false" text="Eliminar" />
+                                    <Button fx:id="EditarFigurita1" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Editar" />
+                                 </children>
+                              </Group>
+                           </bottom>
+                           <effect>
+                              <DropShadow height="30.0" offsetX="2.0" offsetY="2.0" radius="14.5" width="30.0">
+                                 <color>
+                                    <Color red="0.410526305437088" green="0.410526305437088" blue="0.410526305437088" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </View>
+                     </children>
+                  </Group>
+                  <Group fx:id="Figurita2" layoutX="185.0" layoutY="14.0">
+                     <children>
+                        <View fx:id="ImagenFigurita2" layoutX="34.0" prefHeight="272.0" prefWidth="171.0">
+                           <bottom>
+                              <Group fx:id="BotonesFigurita2" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="EliminarFigurita2" layoutX="1.0" mnemonicParsing="false" text="Eliminar" />
+                                    <Button fx:id="EditarFigurita2" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Editar" />
+                                 </children>
+                              </Group>
+                           </bottom>
+                           <effect>
+                              <DropShadow height="30.0" offsetX="2.0" offsetY="2.0" radius="14.5" width="30.0">
+                                 <color>
+                                    <Color red="0.410526305437088" green="0.410526305437088" blue="0.410526305437088" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </View>
+                     </children>
+                  </Group>
+                  <Group fx:id="Figurita3" layoutX="365.0" layoutY="14.0">
+                     <children>
+                        <View fx:id="ImagenFigurita3" layoutX="46.0" prefHeight="272.0" prefWidth="171.0">
+                           <bottom>
+                              <Group fx:id="BotonesFigurita3" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="EliminarFigurita3" layoutX="1.0" mnemonicParsing="false" text="Eliminar" />
+                                    <Button fx:id="EditarFigurita3" layoutY="33.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Editar" />
+                                 </children>
+                              </Group>
+                           </bottom>
+                           <effect>
+                              <DropShadow height="30.0" offsetX="2.0" offsetY="2.0" radius="14.5" width="30.0">
+                                 <color>
+                                    <Color red="0.410526305437088" green="0.410526305437088" blue="0.410526305437088" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </View>
+                     </children>
+                  </Group>
+                  <Text fill="#ffb66e" layoutX="179.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIGURI ⚽" textAlignment="CENTER" wrappingWidth="241.50195121765137">
+                     <font>
+                        <Font name="Tahoma Bold" size="44.0" />
+                     </font>
+                     <effect>
+                        <Lighting bumpInput="$null" diffuseConstant="0.75" specularConstant="0.51" specularExponent="5.32" surfaceScale="1.32">
+                           <light>
+                              <Light.Distant>
+                                 <color>
+                                    <Color red="0.9800000190734863" green="0.9538832306861877" blue="0.8330000042915344" />
+                                 </color>
+                              </Light.Distant>
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Text>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Intercambiar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView layoutX="285.0" layoutY="12.0" prefHeight="342.0" prefWidth="300.0" />
+                  <Group fx:id="Figurita31" layoutX="-4.0" layoutY="36.0">
+                     <children>
+                        <View fx:id="ImagenFigurita31" layoutX="62.0" layoutY="16.0" prefHeight="272.0" prefWidth="171.0">
+                           <bottom>
+                              <Group fx:id="BotonesFigurita31" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="EliminarFigurita31" layoutX="1.0" mnemonicParsing="false" text="Intercambiar" />
+                                 </children>
+                              </Group>
+                           </bottom>
+                           <effect>
+                              <DropShadow height="30.0" offsetX="2.0" offsetY="2.0" radius="14.5" width="30.0">
+                                 <color>
+                                    <Color red="0.410526305437088" green="0.410526305437088" blue="0.410526305437088" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </View>
+                     </children>
+                  </Group>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

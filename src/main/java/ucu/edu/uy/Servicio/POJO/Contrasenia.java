@@ -14,6 +14,6 @@ public class Contrasenia {
 
     @Override
     public final String toString() {
-        return null;
+        return "**********";
     }
 }

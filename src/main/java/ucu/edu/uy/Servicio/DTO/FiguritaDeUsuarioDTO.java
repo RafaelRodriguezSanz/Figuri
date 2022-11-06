@@ -1,4 +1,6 @@
-package ucu.edu.uy.Servicio.POJO;
+package ucu.edu.uy.Servicio.DTO;
+
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +11,8 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @ToString
-public class Foto {
-    String foto;
+public class FiguritaDeUsuarioDTO {
+    UUID id;
+    Integer figurita;
+    String estado;
 }

@@ -68,16 +68,16 @@ public class DB {
         }
     }
 
-    public ResultSet executeAction(String action) throws SQLException {
-        PreparedStatement statement = this.getConnection().prepareStatement(action);
+    public ResultSet executeAction(PreparedStatement statement) throws SQLException {
         statement.execute();
-        statement.close();
-        return statement.getResultSet();
+        ResultSet result = statement.getResultSet();
+        result.next();
+        return result;
     }
 
-    public boolean executeQuery(String action) throws SQLException {
-        PreparedStatement statement = this.getConnection().prepareStatement(action);
-        return statement.execute();
+    public boolean executeQuery(PreparedStatement statement) throws SQLException {
+        boolean result = statement.execute();
+        return result;
     }
 
 }
