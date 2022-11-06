@@ -17,14 +17,14 @@ public class CI {
     public CI(String ci) {
         Validator validator = new Validator();
         ci = validator.cleanNumber(ci);
-        digitos[0] = Integer.valueOf(ci.charAt(0));
-        digitos[1] = Integer.valueOf(ci.charAt(1));
-        digitos[2] = Integer.valueOf(ci.charAt(2));
-        digitos[3] = Integer.valueOf(ci.charAt(3));
-        digitos[4] = Integer.valueOf(ci.charAt(4));
-        digitos[5] = Integer.valueOf(ci.charAt(5));
-        digitos[6] = Integer.valueOf(ci.charAt(6));
-        setDigitoVerificador(Integer.valueOf(ci.charAt(7)));
+        digitos[0] = Character.getNumericValue(ci.charAt(0));
+        digitos[1] = Character.getNumericValue(ci.charAt(1));
+        digitos[2] = Character.getNumericValue(ci.charAt(2));
+        digitos[3] = Character.getNumericValue(ci.charAt(3));
+        digitos[4] = Character.getNumericValue(ci.charAt(4));
+        digitos[5] = Character.getNumericValue(ci.charAt(5));
+        digitos[6] = Character.getNumericValue(ci.charAt(6));
+        setDigitoVerificador(Character.getNumericValue(ci.charAt(7)));
     }
 
     public boolean isValid() {
@@ -48,6 +48,14 @@ public class CI {
         builder.append('-');
         builder.append(String.valueOf(digitos[7]));
         return builder.toString();
+    }
+
+    public Integer toInteger() {
+        Integer res = 0;
+        for (int i = 0; i < digitos.length; i++) {
+            res += (10 ^ i) * digitos[i];
+        }
+        return res;
     }
 
     public int getDigitos() {
