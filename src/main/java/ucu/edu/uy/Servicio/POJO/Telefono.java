@@ -43,6 +43,14 @@ public class Telefono {
         return builder.toString();
     }
 
+    public Integer toInteger() {
+        Integer res = 0;
+        for (int i = 0; i < digitos.length; i++) {
+            res += (10 ^ i) * digitos[i];
+        }
+        return res;
+    }
+
     public int getDigitos() {
         int digitos = 0;
         for (int i = 0; i < CANT_DIGITOS; i++) {
