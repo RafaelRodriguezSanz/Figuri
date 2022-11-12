@@ -50,7 +50,18 @@ public class UserService {
         CI ci = new CI(ciParam);
         UserDTO user = PostgresORM.getInstance().toDTO(UserDAO.readUser(ci.getDigitos()));
         user.setContrasenia(new Contrasenia(new GuardedString(ciParam.toCharArray())));
-        UserDAO.updateUser(PostgresORM.getInstance().toPO(user, encode(newPassword)));
-        return login(ciParam, newPassword);
+        return UserDAO.updateUser(PostgresORM.getInstance().toPO(user, encode(newPassword)))
+                && login(ciParam, newPassword);
+    }
+
+    public boolean deleteUser(String ciParam, String password) throws NoSuchAlgorithmException, SQLException {
+        CI ci = new CI(ciParam);
+        boolean result = UserDAO.deleteUser(ci.getDigitos());
+        try {
+            login(ciParam, password);
+            return false;
+        } catch (Exception e) {
+            return result;
+        }
     }
 }
