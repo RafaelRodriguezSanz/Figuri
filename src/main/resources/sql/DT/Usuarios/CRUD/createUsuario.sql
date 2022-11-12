@@ -1,2 +1,2 @@
-INSERT INTO "Usuarios"(nombre, apellido, ci, telefono, contrasenia, direccion)
-VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO "USUARIOS"(ci, nombre, apellido, telefono, contrasenia)
+VALUES (?, ?, ?, ?, ?);

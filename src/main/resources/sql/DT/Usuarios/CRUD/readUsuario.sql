@@ -1,3 +1,3 @@
 SELECT *
-FROM "Usuarios"
+FROM "USUARIOS"
 WHERE ci = ?;

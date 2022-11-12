@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import ucu.edu.uy.Servicio.POJO.CI;
-import ucu.edu.uy.Servicio.POJO.Direccion;
 import ucu.edu.uy.Servicio.POJO.Nombre;
 import ucu.edu.uy.Servicio.POJO.Telefono;
 import ucu.edu.uy.Servicio.POJO.Contrasenia;
@@ -15,9 +14,8 @@ import ucu.edu.uy.Servicio.POJO.Contrasenia;
 @AllArgsConstructor
 @ToString
 public class UserDTO {
-    Nombre nombre;
-    Contrasenia contrasenia;
-    Direccion direccion;
-    Telefono telefono;
     CI ci;
+    Nombre nombre;
+    Telefono telefono;
+    Contrasenia contrasenia;
 }

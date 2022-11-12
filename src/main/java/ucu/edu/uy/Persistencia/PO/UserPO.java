@@ -6,12 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class UserPO {
-    char[] nombre, apellido, contrasenia, direccion;
-    int telefono, ci;
+    int ci;
+    char[] nombre;
+    char[] apellido;
+    int telefono;
+    char[] contrasenia;
 }

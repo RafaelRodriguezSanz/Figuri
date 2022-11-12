@@ -9,6 +9,13 @@
             "name": "Launch TestSQLStatement",
             "request": "launch",
             "mainClass": "ucu.edu.uy.TestSQLStatement",
+            "projectName": "Main"
+        },
+        {
+            "type": "java",
+            "name": "Launch TestSQLStatement",
+            "request": "launch",
+            "mainClass": "ucu.edu.uy.TestSQLStatement",
             "projectName": "Agent"
         },
         {
@@ -103,10 +110,7 @@
             "type": "java",
             "name": "Launch JavaFX",
             "request": "launch",
-            "mainClass": "javafx:run ucu.edu.uy.App",
-            "args": [
-                "--module-path %JAVA_HOME%/jre/lib/ext/jfxrt.jar --add-modules=javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls"
-            ]
+            "preLaunchTask": "executeJavaFX"
         }
     ]
 }

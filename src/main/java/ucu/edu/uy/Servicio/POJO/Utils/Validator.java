@@ -6,18 +6,18 @@ import java.util.Random;
 
 public class Validator {
     public boolean validateCi(String ci) {
-        String cleanCi = this.cleanNumber(ci);
+        String cleanCi = cleanNumber(ci);
         char validationDigit = cleanCi.charAt(cleanCi.length() - 1);
 
         return Character.getNumericValue(validationDigit) == this.validationDigit(cleanCi);
     }
 
-    public String cleanNumber(String ci) {
+    public static String cleanNumber(String ci) {
         return ci.replaceAll("[^0-9]", "");
     }
 
     private Integer validationDigit(String ci) {
-        String cleanCi = this.cleanNumber(ci);
+        String cleanCi = cleanNumber(ci);
         int a = 0;
         String baseNumber = "2987634";
         String addZeros = String.format("%8s", cleanCi).replace(" ", "0");

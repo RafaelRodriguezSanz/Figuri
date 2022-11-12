@@ -12,6 +12,7 @@ public class Telefono {
     int[] digitos = new int[CANT_DIGITOS];
 
     public Telefono(String number) {
+        number = number.substring(number.length() - CANT_DIGITOS, number.length());
         Validator validator = new Validator();
         number = validator.cleanNumber(number);
         this.digitos[0] = Character.getNumericValue(number.charAt(0));
@@ -43,19 +44,11 @@ public class Telefono {
         return builder.toString();
     }
 
-    public Integer toInteger() {
-        Integer res = 0;
-        for (int i = 0; i < digitos.length; i++) {
-            res += (10 ^ i) * digitos[i];
+    public int getDigitos() {
+        int res = 0;
+        for (int i = 0; i < CANT_DIGITOS; i++) {
+            res = res * 10 + digitos[i];
         }
         return res;
-    }
-
-    public int getDigitos() {
-        int digitos = 0;
-        for (int i = 0; i < CANT_DIGITOS; i++) {
-            digitos += (10 ^ i) * this.digitos[i];
-        }
-        return digitos;
     }
 }

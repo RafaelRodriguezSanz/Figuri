@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "tasks": [{
+        "label": "executeJavaFX",
+        "command": "java -jar \"./target/Executables/Main.jar\" --module-path \"%JAVA_HOME%\\jre\\lib\\ext\\jfxrt.jar\" --add-modules=javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.controls",
+        "type": "shell"
+    }]
+}

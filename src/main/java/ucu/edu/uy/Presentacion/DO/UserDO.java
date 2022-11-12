@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDO {
-    String nombre, apellido, direccion;
-    Integer telefono, ci;
+    Integer ci;
+    String nombre, apellido;
+    Integer telefono;
 }

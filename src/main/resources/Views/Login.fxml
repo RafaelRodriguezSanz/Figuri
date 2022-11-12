@@ -9,24 +9,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.LoginController">
    <children>
-      <TextField layoutX="127.0" layoutY="78.0" prefHeight="25.0" prefWidth="164.0" promptText="Usuario" />
-      <PasswordField layoutX="126.0" layoutY="130.0" prefHeight="25.0" prefWidth="164.0" promptText="Contraseña" />
+      <TextField fx:id="userField" layoutX="127.0" layoutY="78.0" prefHeight="25.0" prefWidth="164.0" promptText="Usuario" />
+      <PasswordField fx:id="passwordField" layoutX="126.0" layoutY="130.0" prefHeight="25.0" prefWidth="164.0" promptText="Contraseña" />
       <Text layoutX="49.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="59.859375" />
       <Text layoutX="50.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
-      <Text fill="#f70000" layoutX="127.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error. Credenciales incorrectas" wrappingWidth="164.1078247070311">
+      <Text fx:id="errorMessage" fill="#f70000" layoutX="126.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error. Credenciales incorrectas" visible="false" wrappingWidth="164.1078247070311">
          <effect>
             <Glow level="0.81" />
          </effect>
       </Text>
-      <Button layoutX="215.0" layoutY="191.0" mnemonicParsing="false" text="Registrarse">
+      <Button fx:id="registerBtn" layoutX="215.0" layoutY="191.0" mnemonicParsing="false" onAction="#registerBtnClicked" text="Registrarse">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="#4955ff" layoutX="50.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="He olvidado la contraseña">
+      <Text fx:id="forgottenPasswordLink" fill="#4955ff" layoutX="101.0" layoutY="235.0" onDragDetected="#forgottenPasswordLinkClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="He olvidado la contraseña">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -36,5 +35,10 @@
             <Font name="Tahoma Bold" size="44.0" />
          </font>
       </Text>
+      <Button fx:id="loginBtn" layoutX="50.0" layoutY="191.0" mnemonicParsing="false" onAction="#loginBtnClicked" prefHeight="25.0" prefWidth="74.0" text="Ingresar">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>
