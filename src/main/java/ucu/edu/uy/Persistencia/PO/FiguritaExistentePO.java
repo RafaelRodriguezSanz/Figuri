@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class FiguritaExistente {
+public class FiguritaExistentePO {
     int numero;
     char[] tipo, descripcion, pais;
 }

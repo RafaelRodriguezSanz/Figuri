@@ -7,7 +7,7 @@ import ucu.edu.uy.Servicio.POJO.Utils.Validator;
 
 public class CI {
 
-    private static int CANT_DIGITOS = 8;
+    private static int CANT_DIGITOS = 7;
 
     int[] digitos = new int[CANT_DIGITOS];
     @Getter
@@ -50,20 +50,12 @@ public class CI {
         return builder.toString();
     }
 
-    public Integer toInteger() {
-        Integer res = 0;
-        for (int i = 0; i < digitos.length; i++) {
-            res += (10 ^ i) * digitos[i];
+    public int getDigitos() {
+        int res = 0;
+        for (int i = 0; i < CANT_DIGITOS; i++) {
+            res = res * 10 + digitos[i];
         }
+        res = res * 10 + digitoVerificador;
         return res;
     }
-
-    public int getDigitos() {
-        int digitos = 0;
-        for (int i = 0; i < CANT_DIGITOS; i++) {
-            digitos += (10 ^ i) * this.digitos[i];
-        }
-        return digitos;
-    }
-
 }

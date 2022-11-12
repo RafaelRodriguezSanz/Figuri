@@ -1,22 +1,22 @@
 package ucu.edu.uy.Persistencia.ORM;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.UUID;
 
 import org.identityconnectors.common.security.GuardedString;
-import org.identityconnectors.common.security.GuardedByteArray.Accessor;
-
 import ucu.edu.uy.Persistencia.PO.FiguritaDeUsuarioPO;
 import ucu.edu.uy.Persistencia.PO.FiguritaExistentePO;
 import ucu.edu.uy.Persistencia.PO.UserPO;
+import ucu.edu.uy.Persistencia.Utils.Encoder;
 import ucu.edu.uy.Servicio.DTO.FiguritaDeUsuarioDTO;
 import ucu.edu.uy.Servicio.DTO.FiguritaExistenteDTO;
+import static ucu.edu.uy.Persistencia.Utils.Encoder.decode;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
 import ucu.edu.uy.Servicio.POJO.Contrasenia;
-import ucu.edu.uy.Servicio.POJO.Direccion;
 import ucu.edu.uy.Servicio.POJO.Nombre;
 import ucu.edu.uy.Servicio.POJO.Telefono;
-import ucu.edu.uy.Servicio.POJO.Utils.PassAccessor;
 
 public class PostgresORM {
     private static final PostgresORM SINGLE_INSTANCE = new PostgresORM();
@@ -28,26 +28,35 @@ public class PostgresORM {
         return SINGLE_INSTANCE;
     }
 
-    public UserPO toPO(UserDTO user) {
+    public UserPO toPO(UserDTO user, String contrasenia) throws NoSuchAlgorithmException {
         char[] nombre = user.getNombre().getNombre().toCharArray();
         char[] apellido = user.getNombre().getAppelido().toCharArray();
-        char[] contrasenia = new char[62];
-        PassAccessor accessor = new PassAccessor();
-        user.getContrasenia().getPass().access(new PassAccessor());
-        accessor.access(contrasenia);
-        char[] direccion = user.getDireccion().getDireccion().toCharArray();
         int telefono = user.getTelefono().getDigitos();
         int ci = user.getCi().getDigitos();
-        return new UserPO(nombre, apellido, contrasenia, direccion, telefono, ci);
+        return new UserPO(ci, nombre, apellido, telefono, contrasenia.toCharArray());
     }
 
     public UserDTO toDTO(UserPO user) {
         Nombre nombre = new Nombre(String.valueOf(user.getNombre()), String.valueOf(user.getApellido()));
-        Contrasenia contrasenia = new Contrasenia(new GuardedString(user.getContrasenia()));
-        Direccion direccion = new Direccion(String.valueOf(user.getDireccion()));
+        Contrasenia contrasenia = new Contrasenia(
+                new GuardedString(String.valueOf(user.getContrasenia()).toCharArray()));
+
+        /*
+         * Securely wipe the char array by storing random values in it.
+         * Some standards require multiple rounds of overwriting; see:
+         * https://en.wikipedia.org/wiki/Data_erasure#Standards
+         * Extracted from:
+         * https://stackoverflow.com/questions/51242150/java-equivalent-of-securestring/
+         * 52861568#52861568
+         */
+        SecureRandom sr = new SecureRandom();
+        for (int i = 0; i < user.getContrasenia().length; i++)
+            user.getContrasenia()[i] = (char) sr.nextInt(Character.MAX_VALUE + 1);
+        // noinspection UnusedAssignment
+        user.setContrasenia(null);
         Telefono telefono = new Telefono(String.valueOf(user.getTelefono()));
         CI ci = new CI(String.valueOf(user.getCi()));
-        return new UserDTO(nombre, contrasenia, direccion, telefono, ci);
+        return new UserDTO(ci, nombre, telefono, contrasenia);
     }
 
     public FiguritaExistentePO toPO(FiguritaExistenteDTO figuritaExistente) {

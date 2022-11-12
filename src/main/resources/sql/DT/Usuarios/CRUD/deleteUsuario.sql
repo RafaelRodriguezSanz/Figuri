@@ -1,2 +1,2 @@
-DELETE FROM "Usuarios"
+DELETE FROM "USUARIOS"
 WHERE ci = ?;
