@@ -24,6 +24,14 @@
         <role>Developer</role>
       </roles>
     </developer>
+    <developer>
+      <name>FiorellaContreras</name>
+      <organization>UCUDAL</organization>
+      <email>fiorellacontreras@gmail.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
   </developers>
   <packaging>jar</packaging>
   <properties>

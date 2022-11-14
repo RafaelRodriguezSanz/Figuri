@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "ucu.edu.uy.App",
+            "projectName": "Main"
+        },
+        {
+            "type": "java",
             "name": "Launch TestSQLStatement",
             "request": "launch",
             "mainClass": "ucu.edu.uy.TestSQLStatement",
