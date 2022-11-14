@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Agents;
+package ucu.edu.uy.jade.Agents;
 
 import jade.core.Agent;
 import jade.domain.DFService;
@@ -6,7 +6,7 @@ import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
-import ucu.edu.uy.Jade.Messages.Message;
+import ucu.edu.uy.jade.Messages.Message;
 
 import java.io.IOException;
 import java.util.StringJoiner;

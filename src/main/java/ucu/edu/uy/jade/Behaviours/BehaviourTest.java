@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Behaviours;
+package ucu.edu.uy.jade.Behaviours;
 
 import jade.core.behaviours.OneShotBehaviour;
 

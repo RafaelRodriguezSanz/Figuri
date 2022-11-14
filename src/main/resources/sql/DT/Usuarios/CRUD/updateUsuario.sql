@@ -1,3 +1,3 @@
-UPDATE "Usuarios"
-SET nombre=?, apellido=?, ci=?, telefono=?, contrasenia=?, direccion=?
+UPDATE "USUARIOS"
+SET ci=?, nombre=?, apellido=?, telefono=?, contrasenia=?
 WHERE ci = ?;

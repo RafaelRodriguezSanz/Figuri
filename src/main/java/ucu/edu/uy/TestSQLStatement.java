@@ -1,52 +1,28 @@
 package ucu.edu.uy;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-
-import ucu.edu.uy.Persistencia.DAO.UserDAO;
-import ucu.edu.uy.Persistencia.ORM.PostgresORM;
-import ucu.edu.uy.Persistencia.PO.UserPO;
-import ucu.edu.uy.Persistencia.Utils.DB;
+import ucu.edu.uy.Servicio.Servicios.UserService;
 
 /**
  * TestSQLStatement
  */
 public class TestSQLStatement {
 
-    public static void main(String[] args) throws IOException, SQLException {
-        UserPO user = new UserPO();
-        user.setNombre("Rafael".toCharArray());
-        user.setApellido("Rodriguez".toCharArray());
-        user.setCi(50149323);
-        user.setTelefono(91352825);
-        user.setContrasenia("MyPass".toCharArray());
-        user.setDireccion("Soriano".toCharArray());
+        public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException {
 
-        try {
-            UserDAO.createUser(user);
-        } catch (Exception e) {
-            System.out.println("User Was not created successfully");
+                System.out
+                                .println(UserService.getInstance().register("5014932-3", "Rafael",
+                                                "Rodriguez", "091352862",
+                                                "MyPass123"));
+                System.out
+                                .println(UserService.getInstance().login("5014932-3", "MyPass123"));
+
+                System.out
+                                .println(UserService.getInstance().changePassword("5014932-3", "MyPass1234"));
+
+                System.out
+                                .println(UserService.getInstance().deleteUser("5014932-3", "MyPass1234"));
         }
-
-        try {
-            user.setNombre("OtroNombre".toCharArray());
-            UserDAO.updateUser(user);
-        } catch (Exception e) {
-            System.out.println("User Was not updated successfully");
-        }
-
-        UserPO me = UserDAO.readUser(50149323);
-        System.out.println(PostgresORM.getInstance().toDTO(me).toString());
-        try {
-        } catch (Exception e) {
-            System.out.println("User Was not read successfully");
-        }
-
-        try {
-            UserDAO.deleteUser(50149323);
-        } catch (Exception e) {
-            System.out.println("User Was not deleted successfully");
-        }
-
-    }
 }

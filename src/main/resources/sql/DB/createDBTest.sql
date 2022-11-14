@@ -5,123 +5,145 @@ CREATE DATABASE "FiguriTest"
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-CREATE TABLE IF NOT EXISTS "Usuarios"
+
+CREATE TABLE IF NOT EXISTS "ESTADOS_PUBLICACIONES"
 (
-    "nombre" text NOT NULL,
-    "apellido" text NOT NULL,
-    "ci" integer NOT NULL,
-    "telefono" integer NOT NULL,
-    "contrasenia" text NOT NULL,
-    "direccion" text NOT NULL,
+    id_estado_publicacion text NOT NULL,
+    PRIMARY KEY (id_estado_publicacion)
+);
+
+CREATE TABLE IF NOT EXISTS "ESTADOS_FIGURITAS"
+(
+    id_estado_figurita text NOT NULL,
+    PRIMARY KEY (id_estado_figurita)
+);
+
+CREATE TABLE IF NOT EXISTS "ESTADOS_OFERTAS"
+(
+    id_estado_ofertas text NOT NULL,
+    PRIMARY KEY (id_estado_ofertas)
+);
+
+CREATE TABLE IF NOT EXISTS "USUARIOS"
+(
+    ci integer NOT NULL,
+    nombre text NOT NULL,
+    apellido text NOT NULL,
+    telefono integer NOT NULL,
+    contrasenia text NOT NULL,
     PRIMARY KEY ("ci")
 );
 
-CREATE TABLE IF NOT EXISTS "Estados"
+CREATE TABLE IF NOT EXISTS "FIGURITAS_EXISTENTES"
 (
-    estado text NOT NULL,
-    PRIMARY KEY (estado)
-);
-
-CREATE TABLE IF NOT EXISTS "FiguritasExistentes"
-(
-    numero integer NOT NULL,
+    id_figurita_existente integer NOT NULL,
     tipo text NOT NULL,
     descripcion text NOT NULL,
 	pais text,
-    PRIMARY KEY (numero)
+    PRIMARY KEY (id_figurita_existente)
 );
 
-CREATE TABLE IF NOT EXISTS "FiguritasDeUsuarios"
+CREATE TABLE IF NOT EXISTS "FIGURITAS_USUARIOS"
 (
-    id text NOT NULL,
-    figurita integer NOT NULL,
-    estado  text NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (figurita) REFERENCES "FiguritasExistentes"(numero),
-    FOREIGN KEY (estado) REFERENCES "Estados"(estado)
+    id_figurita_usuario text NOT NULL,
+    id_figurita_existente integer NOT NULL,
+    id_estado_figurita  text NOT NULL,
+    id_usuario integer NOT NULL,
+    PRIMARY KEY (id_figurita_usuario),
+    FOREIGN KEY (id_figurita_existente) REFERENCES "FIGURITAS_EXISTENTES"(id_figurita_existente),
+    FOREIGN KEY (id_estado_figurita) REFERENCES "ESTADOS_FIGURITAS"(id_estado_figurita),
+    FOREIGN KEY (id_usuario) REFERENCES "USUARIOS"(ci)
 );
 
-
-CREATE TABLE IF NOT EXISTS "Publicaciones"
+CREATE TABLE IF NOT EXISTS "PUBLICACIONES"
 (
-    "fecha" date NOT NULL,
-    "usuario" integer NOT NULL,
-    "figurita" text NOT NULL,
-    "posibleintercambio1" integer,
-    "posibleintercambio2" integer,
-    "posibleintercambio3" integer,
-    FOREIGN KEY (figurita) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (usuario) REFERENCES "Usuarios"(ci),
-    FOREIGN KEY (posibleintercambio1) REFERENCES "FiguritasExistentes"(numero),
-    FOREIGN KEY (posibleintercambio2) REFERENCES "FiguritasExistentes"(numero),
-    FOREIGN KEY (posibleintercambio3) REFERENCES "FiguritasExistentes"(numero),
-    PRIMARY KEY ("usuario", "figurita")
+    id_publicacion text NOT NULL,
+    id_figurita_usuario text NOT NULL,
+    id_estado_publicacion text NOT NULL,
+    id_figurita_existente_1 integer,
+    id_figurita_existente_2 integer,
+    id_figurita_existente_3 integer,
+    fecha date NOT NULL,
+    FOREIGN KEY (id_figurita_usuario) REFERENCES "FIGURITAS_USUARIOS"(id_figurita_usuario),
+    FOREIGN KEY (id_estado_publicacion) REFERENCES "ESTADOS_PUBLICACIONES"(id_estado_publicacion),
+    FOREIGN KEY (id_figurita_existente_1) REFERENCES "FIGURITAS_EXISTENTES"(id_figurita_existente),
+    FOREIGN KEY (id_figurita_existente_2) REFERENCES "FIGURITAS_EXISTENTES"(id_figurita_existente),
+    FOREIGN KEY (id_figurita_existente_3) REFERENCES "FIGURITAS_EXISTENTES"(id_figurita_existente),
+    PRIMARY KEY (id_publicacion)
 );
 
-CREATE TABLE IF NOT EXISTS "Ofertas"
+CREATE TABLE IF NOT EXISTS "OFERTAS"
 (
-    "id" text,
-    "fecha" date NOT NULL,
-    "usuarioa" integer NOT NULL,
-    "usuariob" integer NOT NULL,
-    "figuritaa1" text NOT NULL,
-    "figuritaa2" text,
-    "figuritaa3" text,
-    "figuritab1" text NOT NULL,
-    "figuritab2" text,
-    "figuritab3" text,
-    "concretado" boolean,
-    FOREIGN KEY (figuritaa1) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (figuritaa2) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (figuritaa3) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (figuritab1) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (figuritab2) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (figuritab3) REFERENCES "FiguritasDeUsuarios"(id),
-    FOREIGN KEY (usuarioa) REFERENCES "Usuarios"(ci),
-    FOREIGN KEY (usuariob) REFERENCES "Usuarios"(ci),
-    PRIMARY KEY ("id")
+    id_oferta text NOT NULL,
+    id_publicación text NOT NULL,
+    id_publicación1 text NOT NULL, 
+    id_publicación2 text, 
+    id_publicación3 text,
+    fecha date NOT NULL,
+    FOREIGN KEY (id_publicación) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicación1) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicación2) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicación3) REFERENCES "PUBLICACIONES"(id_publicacion),
+    PRIMARY KEY (id_oferta)
 );
-ALTER TABLE IF EXISTS "Ofertas"
+
+
+ALTER TABLE IF EXISTS "USUARIOS"
     OWNER to postgres;
-ALTER TABLE IF EXISTS "Usuarios"
+ALTER TABLE IF EXISTS "FIGURITAS_USUARIOS"
     OWNER to postgres;
-ALTER TABLE IF EXISTS "Estados"
+ALTER TABLE IF EXISTS "FIGURITAS_EXISTENTES"
     OWNER to postgres;
-ALTER TABLE IF EXISTS "FiguritasExistentes"
+ALTER TABLE IF EXISTS "PUBLICACIONES"
     OWNER to postgres;
-ALTER TABLE IF EXISTS "FiguritasDeUsuarios"
+ALTER TABLE IF EXISTS "OFERTAS"
     OWNER to postgres;
-ALTER TABLE IF EXISTS "Publicaciones"
+ALTER TABLE IF EXISTS "ESTADOS_PUBLICACIONES"
+    OWNER to postgres;
+ALTER TABLE IF EXISTS "ESTADOS_FIGURITAS"
+    OWNER to postgres;
+ALTER TABLE IF EXISTS "ESTADOS_OFERTAS"
     OWNER to postgres;
 
-INSERT INTO "Estados"(estado)
+INSERT INTO "ESTADOS_PUBLICACIONES"(id_estado_publicacion)
+VALUES  ('Activa'),
+        ('Inactiva'),
+        ('Finalizada'),
+        ('Caducada');
+
+INSERT INTO "ESTADOS_FIGURITAS"(id_estado_figurita)
 VALUES  ('Excelente'),
         ('Bueno'),
         ('Malo'),
         ('Pésimo');
 
+INSERT INTO "ESTADOS_OFERTAS"(id_estado_ofertas)
+VALUES  ('Rechazada'),
+        ('Aceptada'),
+        ('Ofertada'),
+        ('Contraofertada');
 
-INSERT INTO "FiguritasExistentes"(numero, tipo, descripcion, pais)
-VALUES  (1,'Especiale','FIFA', NULL),
-        (2,'Especiale','Logo Panini', NULL),
-        (3,'Especiale','Trophy 2/2', NULL),
-        (4,'Especiale','Trophy 1/2', NULL),
-        (5,'Especiale','Mascot 2/2', NULL),
-        (6,'Especiale','Mascot 1/2', NULL),
-        (7,'Especiale','Logo 2/2', NULL),
-        (8,'Especiale','Logo 1/2', NULL),
-        (9,'Especiale','Al Janoub Stadium', NULL),
-        (10,'Especiale','Ahmad Bin Ali Stadium', NULL),
-        (11,'Especiale','Education City Stadium', NULL),
-        (12,'Especiale','Al Thumama Stadium', NULL),
-        (13,'Especiale','Stadium 974', NULL),
-        (14,'Especiale','Khalifa International Stadium', NULL),
-        (15,'Especiale','Al Bayt Stadium Interior', NULL),
-        (16,'Especiale','Al Bayt Stadium Exterior', NULL),
-        (17,'Especiale','Lusail Stadium Interior', NULL),
-        (18,'Especiale','Lusail Stadium Exterior', NULL),
+INSERT INTO "FIGURITAS_EXISTENTES"(id_figurita_existente, tipo, descripcion, pais)
+VALUES  (1,'Especial','FIFA', NULL),
+        (2,'Especial','Logo Panini', NULL),
+        (3,'Especial','Trophy 2/2', NULL),
+        (4,'Especial','Trophy 1/2', NULL),
+        (5,'Especial','Mascot 2/2', NULL),
+        (6,'Especial','Mascot 1/2', NULL),
+        (7,'Especial','Logo 2/2', NULL),
+        (8,'Especial','Logo 1/2', NULL),
+        (9,'Especial','Al Janoub Stadium', NULL),
+        (10,'Especial','Ahmad Bin Ali Stadium', NULL),
+        (11,'Especial','Education City Stadium', NULL),
+        (12,'Especial','Al Thumama Stadium', NULL),
+        (13,'Especial','Stadium 974', NULL),
+        (14,'Especial','Khalifa International Stadium', NULL),
+        (15,'Especial','Al Bayt Stadium Interior', NULL),
+        (16,'Especial','Al Bayt Stadium Exterior', NULL),
+        (17,'Especial','Lusail Stadium Interior', NULL),
+        (18,'Especial','Lusail Stadium Exterior', NULL),
         (19,'Cuadro','Team Photo','Catar'),
-        (20,'Especiale','Official Ball', NULL),
+        (20,'Especial','Official Ball', NULL),
         (21,'Jugador','Saad Al Sheeb','Catar'),
         (22,'Escudo','Emblem','Catar'),
         (23,'Jugador','Homam Ahmed','Catar'),
