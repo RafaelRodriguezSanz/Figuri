@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
 
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.RestablecerContraseñaController">
+<Scene xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.RestablecerContraseñaController">
     <AnchorPane prefHeight="316.0" prefWidth="369.0">
       <children>
          <Text layoutX="2.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #ff8000; -fx-font: bold italic  30pt Arial; -fx-stroke: #000000; -fx-stroke-width: 2;" text="Reestablacer contraseña" />
@@ -27,7 +28,7 @@
          <TextField fx:id="nombre" layoutX="157.0" layoutY="110.0" prefHeight="25.0" prefWidth="163.0" promptText="Ingrese su nombre" />
          <TextField fx:id="cedula" layoutX="157.0" layoutY="154.0" prefHeight="25.0" prefWidth="164.0" promptText="Ingrese su cédula" />
          <PasswordField fx:id="contraseña" layoutX="157.0" layoutY="197.0" prefHeight="25.0" prefWidth="164.0" promptText="Ingrese Nueva Contraseña" />
-         <Button fx:id="Atras" layoutX="150.0" layoutY="281.0" mnemonicParsing="false" onAction="#VolverALogin" style="-fx-background-color: #d99c4c; -fx-border-color: #000000;" text="Atrás">
+         <Button fx:id="Atras" layoutX="150.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToLogin" style="-fx-background-color: #d99c4c; -fx-border-color: #000000;" text="Atrás">
             <font>
                <Font size="15.0" />
             </font>
@@ -35,7 +36,7 @@
                <ColorAdjust brightness="0.31" contrast="0.57" hue="0.02" saturation="-0.19" />
             </effect>
          </Button>
-         <Button fx:id="Confirmar" layoutX="232.0" layoutY="281.0" mnemonicParsing="false" onAction="#IngresarAAplicacion" style="-fx-background-color: #d99c4c; -fx-border-color: #000000;" text="Confirmar">
+         <Button fx:id="Confirmar" layoutX="232.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToHome" style="-fx-background-color: #d99c4c; -fx-border-color: #000000;" text="Confirmar">
             <font>
                <Font size="15.0" />
             </font>

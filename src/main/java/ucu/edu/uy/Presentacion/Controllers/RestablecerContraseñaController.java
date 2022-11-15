@@ -1,4 +1,5 @@
 package ucu.edu.uy.Presentacion.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-public class RegistroDeUsuarioController {
+public class RestablecerContraseñaController {
 
     @FXML
     private Button Atras;
@@ -19,24 +20,18 @@ public class RegistroDeUsuarioController {
     private Button Confirmar;
 
     @FXML
-    private PasswordField Contraseña;
-
-    @FXML
-    private TextField apellido;
-
-    @FXML
     private TextField cedula;
 
     @FXML
-    private TextField nombre;
+    private PasswordField contraseña;
 
     @FXML
-    private TextField telefono;
+    private TextField nombre;
     private Stage stage;
     private Scene scene;
 
     @FXML
-    void IngresarAAplicacion(ActionEvent event) {
+    void switchToHome(ActionEvent event) {
 
     }
 
