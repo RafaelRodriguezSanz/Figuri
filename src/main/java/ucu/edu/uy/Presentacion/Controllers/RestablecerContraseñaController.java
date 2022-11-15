@@ -10,6 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import ucu.edu.uy.Servicio.Servicios.UserService;
+import lombok.Getter;
+import lombok.Setter;
+import javafx.scene.text.Text;
+
+
+@Getter
+@Setter
 
 public class RestablecerContraseñaController {
 
@@ -31,7 +41,21 @@ public class RestablecerContraseñaController {
     private Scene scene;
 
     @FXML
-    void switchToHome(ActionEvent event) {
+    private Text errorContraseña;
+
+    @FXML
+    void switchToHome(ActionEvent event) throws IOException, NoSuchAlgorithmException, SQLException{
+        boolean changePassword = UserService.getInstance().changePassword(cedula.getText(), 
+        contraseña.getText());
+        System.out.println("changePassword " + changePassword);
+        if (changePassword) {
+            Stage stage = (Stage) Confirmar.getScene().getWindow();
+            Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            this.getErrorContraseña().setVisible(true);
+        }
 
     }
 
