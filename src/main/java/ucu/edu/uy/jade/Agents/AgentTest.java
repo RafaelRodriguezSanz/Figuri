@@ -18,16 +18,16 @@ public class AgentTest extends Agent {
         b.add("AID: " + this.getAID().toString());
         b.add("NAME: " + this.getName());
         b.add("AMS: " + this.getAMS());
-        for (DFAgentDescription services : getServices()) {
-            System.out.println(services.getName());
-        }
-        try {
-            while (true) {
-                sendMessage();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // for (DFAgentDescription services : getServices()) {
+        // System.out.println(services.getName());
+        // }
+        // try {
+        // while (true) {
+        // sendMessage();
+        // }
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
     }
 
     public void registerService() {

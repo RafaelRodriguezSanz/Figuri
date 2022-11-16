@@ -23,10 +23,10 @@ public class OfertaDAO {
             Date fecha = new Date(System.currentTimeMillis());
 
             statement.setString(1, new String(oferta.getId_oferta()));
-            statement.setString(2, new String(oferta.getId_publicación()));
-            statement.setString(3, new String(oferta.getId_publicación1()));
-            statement.setString(4, new String(oferta.getId_publicación2()));
-            statement.setString(5, new String(oferta.getId_publicación3()));
+            statement.setString(2, new String(oferta.getId_publicacion()));
+            statement.setString(3, new String(oferta.getId_publicacion1()));
+            statement.setString(4, new String(oferta.getId_publicacion2()));
+            statement.setString(5, new String(oferta.getId_publicacion3()));
             statement.setDate(6, fecha);
             DB.getSINGLE_INSTANCE().executeQuery(statement);
             statement.close();
@@ -51,10 +51,10 @@ public class OfertaDAO {
         DB.getSINGLE_INSTANCE().disconnect();
 
         oferta.setId_oferta(result.getString(1).toCharArray());
-        oferta.setId_publicación(result.getString(2).toCharArray());
-        oferta.setId_publicación1(result.getString(3).toCharArray());
-        oferta.setId_publicación2(result.getString(4).toCharArray());
-        oferta.setId_publicación3(result.getString(5).toCharArray());
+        oferta.setId_publicacion(result.getString(2).toCharArray());
+        oferta.setId_publicacion1(result.getString(3).toCharArray());
+        oferta.setId_publicacion2(result.getString(4).toCharArray());
+        oferta.setId_publicacion3(result.getString(5).toCharArray());
         oferta.setFecha(result.getDate(6));
         statement.close();
         return oferta;
@@ -78,10 +78,10 @@ public class OfertaDAO {
         String query = SQL.getQuery("DT/Ofertas/CRUD/updateOferta");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, new String(oferta.getId_oferta()));
-        statement.setString(2, new String(oferta.getId_publicación()));
-        statement.setString(3, new String(oferta.getId_publicación1()));
-        statement.setString(4, new String(oferta.getId_publicación2()));
-        statement.setString(5, new String(oferta.getId_publicación3()));
+        statement.setString(2, new String(oferta.getId_publicacion()));
+        statement.setString(3, new String(oferta.getId_publicacion1()));
+        statement.setString(4, new String(oferta.getId_publicacion2()));
+        statement.setString(5, new String(oferta.getId_publicacion3()));
         statement.setDate(6, fecha);
 
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);

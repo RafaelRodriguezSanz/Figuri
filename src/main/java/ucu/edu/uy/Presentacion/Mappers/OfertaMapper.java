@@ -9,10 +9,10 @@ public class OfertaMapper {
     public static OfertaDO toDO(OfertaDTO oferta) {
         return new OfertaDO(
                 oferta.getId_oferta(),
-                oferta.getId_publicación(),
-                oferta.getId_publicación1(),
-                oferta.getId_publicación2(),
-                oferta.getId_publicación3(),
+                oferta.getId_publicacion(),
+                oferta.getId_publicacion1(),
+                oferta.getId_publicacion2(),
+                oferta.getId_publicacion3(),
                 oferta.getFecha());
     }
 }

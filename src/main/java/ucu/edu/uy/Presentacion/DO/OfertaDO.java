@@ -13,9 +13,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OfertaDO {
     String id_oferta;
-    String id_publicación;
-    String id_publicación1;
-    String id_publicación2;
-    String id_publicación3;
+    String id_publicacion;
+    String id_publicacion1;
+    String id_publicacion2;
+    String id_publicacion3;
     Date fecha;
 }

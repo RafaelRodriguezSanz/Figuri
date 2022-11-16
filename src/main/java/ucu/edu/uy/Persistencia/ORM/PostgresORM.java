@@ -123,20 +123,20 @@ public class PostgresORM {
     public OfertaPO toPO(OfertaDTO oferta) {
         return new OfertaPO(
                 oferta.getId_oferta().toCharArray(),
-                oferta.getId_publicación().toCharArray(),
-                oferta.getId_publicación1().toCharArray(),
-                oferta.getId_publicación2().toCharArray(),
-                oferta.getId_publicación3().toCharArray(),
+                oferta.getId_publicacion().toCharArray(),
+                oferta.getId_publicacion1().toCharArray(),
+                oferta.getId_publicacion2().toCharArray(),
+                oferta.getId_publicacion3().toCharArray(),
                 oferta.getFecha());
     }
 
     public OfertaDTO toDTO(OfertaPO oferta) {
         return new OfertaDTO(
                 new String(oferta.getId_oferta()),
-                new String(oferta.getId_publicación()),
-                new String(oferta.getId_publicación1()),
-                new String(oferta.getId_publicación2()),
-                new String(oferta.getId_publicación3()),
+                new String(oferta.getId_publicacion()),
+                new String(oferta.getId_publicacion1()),
+                new String(oferta.getId_publicacion2()),
+                new String(oferta.getId_publicacion3()),
                 oferta.getFecha());
     }
 }

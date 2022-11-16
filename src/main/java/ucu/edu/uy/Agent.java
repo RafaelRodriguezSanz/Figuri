@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-public class App extends Application {
+public class Agent extends Application {
     @FXML
     private AnchorPane ap;
 
@@ -32,33 +32,39 @@ public class App extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        startPlatform();
     }
 
     public static void startPlatform() throws ControllerException, FIPAException {
+
         Runtime rt = Runtime.instance();
 
         // 1) create a platform (main container+DF+AMS)
-        Profile profileMain = new ProfileImpl("192.168.9.1", 1111, "ID", false);
+        Profile profileMain = new ProfileImpl("localhost", 8080, "ID", true);
         System.out.println("Launching a main-container..." + profileMain);
         ContainerController mainContainer = rt.createMainContainer(profileMain);
 
         // Create Container
         System.out.println("Launching containers ...");
-        ProfileImpl pContainer = new ProfileImpl("192.168.9.1", 1111, "ID", false);
+        ProfileImpl pContainer = new ProfileImpl("localhost", 8080, "ID", true);
         pContainer.setParameter(Profile.CONTAINER_NAME, "my-Container");
         System.out.println("Launching container " + pContainer);
         ContainerController myContainer = (AgentContainer) rt.createAgentContainer(pContainer);
 
         // First Agent
-        AgentController firstAgent = myContainer.createNewAgent("john", "ucu.edu.uy.Jade.Agents.AgentTest", null);
+        AgentController firstAgent = mainContainer.createNewAgent("john", "ucu.edu.uy.Jade.Agents.AgentTest", null);
+
+        // AMS & DF Agents
+        AgentController AMS = mainContainer.getAgent("AMS");
+        AgentController DF = mainContainer.getAgent("DF");
 
         // Get My Agent
-        getAgent(myContainer, "john");
+        getAgent(mainContainer, "john");
         firstAgent.start();
         firstAgent.activate();
     }
 
-    private static void getAgent(ContainerController myContainer, String name) throws ControllerException {
-        AgentController myAgent = myContainer.getAgent(name);
+    private static void getAgent(ContainerController mainContainer, String name) throws ControllerException {
+        AgentController myAgent = mainContainer.getAgent(name);
     }
 }

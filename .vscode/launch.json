@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "ucu.edu.uy.Main",
+            "projectName": "Main"
+        },
+        {
+            "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "ucu.edu.uy.App",
@@ -95,7 +102,7 @@
                 "-port",
                 "1111",
                 "-agents",
-                "B:ucu.edu.uy.jade.Agents.AgentTest2"
+                "B:ucu.edu.uy.Jade.Agents.AgentTest"
             ]
         },
         {
