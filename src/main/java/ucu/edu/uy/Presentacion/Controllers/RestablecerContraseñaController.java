@@ -1,4 +1,5 @@
 package ucu.edu.uy.Presentacion.Controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,17 +10,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import ucu.edu.uy.Servicio.Servicios.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import javafx.scene.text.Text;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 
 
 @Getter
 @Setter
-public class RegistroDeUsuarioController {
+
+public class RestablecerContraseñaController {
+
     @FXML
     private Button Atras;
 
@@ -27,30 +30,25 @@ public class RegistroDeUsuarioController {
     private Button Confirmar;
 
     @FXML
-    private PasswordField Contraseña;
-
-    @FXML
-    private TextField apellido;
-
-    @FXML
     private TextField cedula;
 
     @FXML
-    private TextField nombre;
-    @FXML
-    private Text errorContraseña;
+    private PasswordField contraseña;
 
     @FXML
-    private TextField telefono;
+    private TextField nombre;
     private Stage stage;
     private Scene scene;
 
     @FXML
-    void switchToHome(ActionEvent event) throws IOException, NoSuchAlgorithmException, SQLException {
-        boolean register = UserService.getInstance().register(cedula.getText(), nombre.getText(), apellido.getText(), telefono.getText(), 
-        Contraseña.getText());
-        System.out.println("register " + register);
-        if (register) {
+    private Text errorContraseña;
+
+    @FXML
+    void switchToHome(ActionEvent event) throws IOException, NoSuchAlgorithmException, SQLException{
+        boolean changePassword = UserService.getInstance().changePassword(cedula.getText(), 
+        contraseña.getText());
+        System.out.println("changePassword " + changePassword);
+        if (changePassword) {
             Stage stage = (Stage) Confirmar.getScene().getWindow();
             Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
             stage.setScene(scene);
@@ -58,6 +56,7 @@ public class RegistroDeUsuarioController {
         } else {
             this.getErrorContraseña().setVisible(true);
         }
+
     }
 
     @FXML

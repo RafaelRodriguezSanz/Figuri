@@ -28,14 +28,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene =  FXMLLoader.load(getClass().getResource("/Views/FiguriLogin.fxml"));
         stage.setScene(scene);
         stage.show();
-        startPlatform();
+        //startPlatform();
     }
 
-    public static void startPlatform() throws ControllerException, FIPAException {
+   /*  public static void startPlatform() throws ControllerException, FIPAException {
         Runtime rt = Runtime.instance();
 
         // 1) create a platform (main container+DF+AMS)
@@ -65,5 +64,5 @@ public class App extends Application {
 
     private static void getAgent(ContainerController mainContainer, String name) throws ControllerException {
         AgentController myAgent = mainContainer.getAgent(name);
-    }
+    } */
 }
