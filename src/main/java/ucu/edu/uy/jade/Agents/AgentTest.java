@@ -1,12 +1,16 @@
 package ucu.edu.uy.Jade.Agents;
 
+import jade.core.AID;
 import jade.core.Agent;
+import jade.domain.AMSService;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
+import jade.domain.FIPAAgentManagement.AMSAgentDescription;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import ucu.edu.uy.Jade.Messages.Message;
+import ucu.edu.uy.Jade.Utils.Session;
 
 import java.io.IOException;
 import java.util.StringJoiner;
@@ -18,6 +22,9 @@ public class AgentTest extends Agent {
         b.add("AID: " + this.getAID().toString());
         b.add("NAME: " + this.getName());
         b.add("AMS: " + this.getAMS());
+
+        registerService();
+
         // for (DFAgentDescription services : getServices()) {
         // System.out.println(services.getName());
         // }
@@ -35,6 +42,7 @@ public class AgentTest extends Agent {
         dfd.setName(getAID());
         ServiceDescription sd = new ServiceDescription();
         sd.setType("Exchanging");
+        sd.setName("Exchanging-" + getAID());
         dfd.addServices(sd);
         try {
             DFService.register(this, dfd);
