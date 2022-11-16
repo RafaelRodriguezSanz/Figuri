@@ -1,2 +1,2 @@
-DELETE FROM "Ofertas"
-WHERE id = ?;
+DELETE FROM public."OFERTAS"
+	WHERE id_oferta = ?;

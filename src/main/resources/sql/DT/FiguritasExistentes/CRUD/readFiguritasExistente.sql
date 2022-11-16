@@ -1,3 +1,3 @@
 SELECT *
-FROM "FiguritasExistentes"
-WHERE numero = ?;
+FROM "FIGURITAS_EXISTENTES"
+WHERE id_figurita_existente = ?;

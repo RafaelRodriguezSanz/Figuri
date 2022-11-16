@@ -9,7 +9,6 @@ import org.identityconnectors.common.security.GuardedString;
 
 import ucu.edu.uy.Persistencia.DAO.UserDAO;
 import ucu.edu.uy.Persistencia.ORM.PostgresORM;
-import ucu.edu.uy.Persistencia.Utils.Encoder;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
 import ucu.edu.uy.Servicio.POJO.Contrasenia;
@@ -17,7 +16,6 @@ import static ucu.edu.uy.Persistencia.Utils.Encoder.decode;
 import static ucu.edu.uy.Persistencia.Utils.Encoder.encode;
 import ucu.edu.uy.Servicio.POJO.Nombre;
 import ucu.edu.uy.Servicio.POJO.Telefono;
-import ucu.edu.uy.Servicio.POJO.Utils.PassAccessor;
 
 public class UserService {
     private static final UserService SINGLE_INSTANCE = new UserService();

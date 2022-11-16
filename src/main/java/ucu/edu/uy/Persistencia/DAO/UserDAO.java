@@ -86,6 +86,8 @@ public class UserDAO {
         String query = SQL.getQuery("DT/Usuarios/CRUD/deleteUsuario");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setInt(1, ci);
+        statement.setInt(2, ci);
+        statement.setInt(3, ci);
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
         statement.close();
         DB.getSINGLE_INSTANCE().disconnect();

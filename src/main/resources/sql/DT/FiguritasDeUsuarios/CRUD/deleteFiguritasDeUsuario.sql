@@ -1,2 +1,2 @@
-DELETE FROM "FiguritasDeUsuario"
-WHERE id = ?;
+DELETE FROM "FIGURITAS_USUARIOS"
+WHERE id_figurita_usuario = ?;

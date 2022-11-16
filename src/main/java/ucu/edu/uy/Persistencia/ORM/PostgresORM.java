@@ -7,14 +7,21 @@ import java.util.UUID;
 import org.identityconnectors.common.security.GuardedString;
 import ucu.edu.uy.Persistencia.PO.FiguritaDeUsuarioPO;
 import ucu.edu.uy.Persistencia.PO.FiguritaExistentePO;
+import ucu.edu.uy.Persistencia.PO.OfertaPO;
+import ucu.edu.uy.Persistencia.PO.PublicacionPO;
 import ucu.edu.uy.Persistencia.PO.UserPO;
 import ucu.edu.uy.Persistencia.Utils.Encoder;
+import ucu.edu.uy.Presentacion.DO.OfertaDO;
 import ucu.edu.uy.Servicio.DTO.FiguritaDeUsuarioDTO;
 import ucu.edu.uy.Servicio.DTO.FiguritaExistenteDTO;
+import ucu.edu.uy.Servicio.DTO.OfertaDTO;
+import ucu.edu.uy.Servicio.DTO.PublicacionDTO;
+
 import static ucu.edu.uy.Persistencia.Utils.Encoder.decode;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
 import ucu.edu.uy.Servicio.POJO.Contrasenia;
+import ucu.edu.uy.Servicio.POJO.Estado;
 import ucu.edu.uy.Servicio.POJO.Nombre;
 import ucu.edu.uy.Servicio.POJO.Telefono;
 
@@ -60,7 +67,7 @@ public class PostgresORM {
     }
 
     public FiguritaExistentePO toPO(FiguritaExistenteDTO figuritaExistente) {
-        int numero = figuritaExistente.getNumero();
+        int numero = figuritaExistente.getId_figurita_existente();
         char[] tipo = figuritaExistente.getTipo().toCharArray();
         char[] descripcion = figuritaExistente.getDescripcion().toCharArray();
         char[] pais = figuritaExistente.getPais().toCharArray();
@@ -68,7 +75,7 @@ public class PostgresORM {
     }
 
     public FiguritaExistenteDTO toDTO(FiguritaExistentePO figuritaExistente) {
-        Integer numero = figuritaExistente.getNumero();
+        Integer numero = figuritaExistente.getId_figurita_existente();
         String tipo = new String(figuritaExistente.getTipo());
         String descripcion = new String(figuritaExistente.getDescripcion());
         String pais = new String(figuritaExistente.getPais());
@@ -76,17 +83,60 @@ public class PostgresORM {
     }
 
     public FiguritaDeUsuarioPO toPO(FiguritaDeUsuarioDTO figuritaDeUsuario) {
-        char[] id = figuritaDeUsuario.getId().toString().toCharArray();
-        int figurita = figuritaDeUsuario.getFigurita();
-        char[] estado = figuritaDeUsuario.getEstado().toCharArray();
-        return new FiguritaDeUsuarioPO(id, figurita, estado);
+        char[] id_figurita_usuario = figuritaDeUsuario.getId_figurita_De_Usuario().toString().toCharArray();
+        int id_figurita_existente = figuritaDeUsuario.getFigurita();
+        int id_estado_figurita = figuritaDeUsuario.getEstado().ordinal();
+        int id_usuario = figuritaDeUsuario.getId_usuario();
+
+        return new FiguritaDeUsuarioPO(id_figurita_usuario, id_figurita_existente, id_estado_figurita, id_usuario);
     }
 
     public FiguritaDeUsuarioDTO toDTO(FiguritaDeUsuarioPO figuritaDeUsuario) {
-        UUID id = UUID.fromString(new String(figuritaDeUsuario.getId()));
-        Integer figurita = figuritaDeUsuario.getFigurita();
-        String estado = new String(figuritaDeUsuario.getEstado());
-        return new FiguritaDeUsuarioDTO(id, figurita, estado);
+        UUID id = UUID.fromString(new String(figuritaDeUsuario.getId_figurita_usuario()));
+        Integer figurita = figuritaDeUsuario.getId_figurita_existente();
+        Estado estado = Estado.values()[figuritaDeUsuario.getId_estado_figurita()];
+        Integer id_usuario = figuritaDeUsuario.getId_usuario();
+        return new FiguritaDeUsuarioDTO(id, figurita, estado, id_usuario);
     }
 
+    public PublicacionPO toPO(PublicacionDTO publicacion) {
+        return new PublicacionPO(publicacion.getId_publicacion().toCharArray(),
+                publicacion.getId_figurita_usuario().toCharArray(),
+                publicacion.getId_estado_publicacion().toCharArray(),
+                publicacion.getId_figurita_existente_1(),
+                publicacion.getId_figurita_existente_2(),
+                publicacion.getId_figurita_existente_3(),
+                publicacion.getFecha());
+    }
+
+    public PublicacionDTO toDTO(PublicacionPO publicacion) {
+
+        return new PublicacionDTO(new String(publicacion.getId_publicacion()),
+                new String(publicacion.getId_figurita_usuario()),
+                new String(publicacion.getId_estado_publicacion()),
+                Integer.valueOf(publicacion.getId_figurita_existente_1()),
+                Integer.valueOf(publicacion.getId_figurita_existente_2()),
+                Integer.valueOf(publicacion.getId_figurita_existente_3()),
+                publicacion.getFecha());
+    }
+
+    public OfertaPO toPO(OfertaDTO oferta) {
+        return new OfertaPO(
+                oferta.getId_oferta().toCharArray(),
+                oferta.getId_publicación().toCharArray(),
+                oferta.getId_publicación1().toCharArray(),
+                oferta.getId_publicación2().toCharArray(),
+                oferta.getId_publicación3().toCharArray(),
+                oferta.getFecha());
+    }
+
+    public OfertaDTO toDTO(OfertaPO oferta) {
+        return new OfertaDTO(
+                new String(oferta.getId_oferta()),
+                new String(oferta.getId_publicación()),
+                new String(oferta.getId_publicación1()),
+                new String(oferta.getId_publicación2()),
+                new String(oferta.getId_publicación3()),
+                oferta.getFecha());
+    }
 }
