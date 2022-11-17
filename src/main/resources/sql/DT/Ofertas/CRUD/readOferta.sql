@@ -1,3 +1,3 @@
 SELECT *
-FROM "Ofertas"
-WHERE id = ?;
+FROM "OFERTAS"
+WHERE id_oferta = ?;

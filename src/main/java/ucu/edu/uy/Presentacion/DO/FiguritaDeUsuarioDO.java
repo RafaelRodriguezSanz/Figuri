@@ -1,4 +1,4 @@
-package ucu.edu.uy.Persistencia.PO;
+package ucu.edu.uy.Presentacion.DO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class FiguritaExistentePO {
-    int id_figurita_existente;
-    char[] tipo, descripcion, pais;
+public class FiguritaDeUsuarioDO {
+    Integer id_figurita_existente;
+    String tipo, descripcion, pais, estado;
 }

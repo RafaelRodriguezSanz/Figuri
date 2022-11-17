@@ -1,2 +1,2 @@
-INSERT INTO public."Ofertas"(id, fecha, usuarioa, usuariob, figuritaa1, figuritaa2, figuritaa3, figuritab1, figuritab2, figuritab3, concretado)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO "OFERTAS"(id_oferta, "id_publicación", "id_publicación1", "id_publicación2", "id_publicación3", fecha)
+VALUES (?, ?, ?, ?, ?, ?);

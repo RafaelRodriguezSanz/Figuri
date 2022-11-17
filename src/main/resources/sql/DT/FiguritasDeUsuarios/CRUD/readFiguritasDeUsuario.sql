@@ -1,3 +1,3 @@
 SELECT *
-FROM "FiguritasDeUsuarios"
-WHERE id = ?;
+FROM "FIGURITAS_USUARIOS"
+WHERE id_figurita_usuario = ?;

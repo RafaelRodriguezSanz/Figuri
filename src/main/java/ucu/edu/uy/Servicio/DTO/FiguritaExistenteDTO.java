@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class FiguritaExistenteDTO {
-    Integer numero;
+    Integer id_figurita_existente;
     String tipo;
     String descripcion;
     String pais;
