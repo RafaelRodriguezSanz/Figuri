@@ -6,13 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "ucu.edu.uy.Main",
-            "projectName": "Main"
-        },
-        {
-            "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "ucu.edu.uy.App",

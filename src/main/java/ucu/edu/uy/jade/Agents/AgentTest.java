@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Agents;
+package ucu.edu.uy.jade.Agents;
 
 import jade.core.AID;
 import jade.core.Agent;
