@@ -1,4 +1,4 @@
-package ucu.edu.uy.jade.Utils;
+package ucu.edu.uy.Jade.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
