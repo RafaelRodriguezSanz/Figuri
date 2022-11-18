@@ -95,7 +95,7 @@
                 "-port",
                 "1111",
                 "-agents",
-                "B:ucu.edu.uy.jade.Agents.AgentTest2"
+                "B:ucu.edu.uy.Jade.Agents.AgentTest"
             ]
         },
         {

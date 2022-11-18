@@ -1,30 +1,33 @@
 package ucu.edu.uy.Presentacion.Controllers;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
-import ucu.edu.uy.Servicio.Servicios.UserService;
-import static ucu.edu.uy.Servicio.POJO.Utils.Validator.cleanNumber;
+import ucu.edu.uy.Jade.Utils.Session;
+import java.awt.Desktop;
 
 @Getter
 @Setter
 public class LoginController {
     @FXML
-    private AnchorPane ap;
+    private Pane panel;
 
     @FXML
     private Text errorMessage;
@@ -45,29 +48,43 @@ public class LoginController {
     private TextField userField;
 
     @FXML
-    void forgottenPasswordLinkClicked(MouseEvent event) {
-
+    void forgottenPasswordLinkClicked(MouseEvent event) throws IOException, URISyntaxException {
+        Desktop desktop = Desktop.getDesktop();
+        URI mailto = new URI(
+                "mailto:support@figuri.com?subject=Pass%20Recovery&body=Hi%2C%20I%20need%20a%20recovery%20Code%21");
+        desktop.browse(mailto);
+        desktop.mail(mailto);
     }
 
     @FXML
     void loginBtnClicked(ActionEvent event) throws IOException, NoSuchAlgorithmException {
-        boolean logged = UserService.getInstance().login(this.getUserField().getText(),
-                this.getPasswordField().getText());
-        System.out.println("login " + logged);
+        System.out.println("Setting Session...");
+        boolean logged = Session.getInstance().login(this.getUserField().getText(), this.getPasswordField().getText());
+        System.out.println("login> " + logged);
         if (logged) {
+            System.out.println("Changing UI...");
             Stage stage = (Stage) loginBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/BasicFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+            System.out.println("Starting Agent...");
+            Session.getInstance().startSession();
+            System.out.println("Agent Started...");
         } else {
             this.getErrorMessage().setVisible(true);
         }
     }
 
     @FXML
-    void registerBtnClicked(ActionEvent event) {
-
+    void registerBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Changing UI...");
+        Stage stage = (Stage) loginBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

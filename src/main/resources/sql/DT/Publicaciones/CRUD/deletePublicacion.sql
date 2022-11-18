@@ -1,2 +1,2 @@
-DELETE FROM "Publicaciones"
-WHERE usuario = ? AND figurita = ? ;
+DELETE FROM "PUBLICACIONES"
+WHERE id_publicacion = ? ;
