@@ -1,31 +1,33 @@
 package ucu.edu.uy.Presentacion.Controllers;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.Setter;
 import ucu.edu.uy.Jade.Utils.Session;
-import ucu.edu.uy.Servicio.POJO.Utils.Validator;
-import ucu.edu.uy.Servicio.Servicios.UserService;
+import java.awt.Desktop;
 
 @Getter
 @Setter
 public class LoginController {
     @FXML
-    private AnchorPane ap;
+    private Pane panel;
 
     @FXML
     private Text errorMessage;
@@ -46,8 +48,12 @@ public class LoginController {
     private TextField userField;
 
     @FXML
-    void forgottenPasswordLinkClicked(MouseEvent event) {
-
+    void forgottenPasswordLinkClicked(MouseEvent event) throws IOException, URISyntaxException {
+        Desktop desktop = Desktop.getDesktop();
+        URI mailto = new URI(
+                "mailto:support@figuri.com?subject=Pass%20Recovery&body=Hi%2C%20I%20need%20a%20recovery%20Code%21");
+        desktop.browse(mailto);
+        desktop.mail(mailto);
     }
 
     @FXML
@@ -58,7 +64,7 @@ public class LoginController {
         if (logged) {
             System.out.println("Changing UI...");
             Stage stage = (Stage) loginBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/BasicFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -72,8 +78,13 @@ public class LoginController {
     }
 
     @FXML
-    void registerBtnClicked(ActionEvent event) {
-
+    void registerBtnClicked(ActionEvent event) throws IOException {
+        System.out.println("Changing UI...");
+        Stage stage = (Stage) loginBtn.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
