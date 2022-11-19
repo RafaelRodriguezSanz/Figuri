@@ -88,6 +88,7 @@ public class UserDAO {
         statement.setInt(1, ci);
         statement.setInt(2, ci);
         statement.setInt(3, ci);
+        statement.setInt(4, ci);
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
         statement.close();
         DB.getSINGLE_INSTANCE().disconnect();

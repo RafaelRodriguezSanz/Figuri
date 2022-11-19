@@ -1,66 +1,57 @@
 package ucu.edu.uy.Presentacion.Controllers;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class HomeController {
 
     @FXML
-    private Group BotonesFigurita1;
+    private Button figuritasBtn;
 
     @FXML
-    private Group BotonesFigurita2;
+    private Button intercambiarBtn;
 
     @FXML
-    private Group BotonesFigurita3;
+    private Button publicacionesBtn;
 
     @FXML
-    private Group BotonesFigurita31;
+    private Scene scene;
 
     @FXML
-    private Button EditarFigurita1;
+    private Label title;
 
     @FXML
-    private Button EditarFigurita2;
+    void goToFiguritas(ActionEvent event) throws IOException {
+        Stage stage = (Stage) scene.getWindow();
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Figuritas.fxml"));
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
-    private Button EditarFigurita3;
+    void goToIntercambiar(ActionEvent event) throws IOException {
+        Stage stage = (Stage) scene.getWindow();
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
-    private Button EliminarFigurita1;
-
-    @FXML
-    private Button EliminarFigurita2;
-
-    @FXML
-    private Button EliminarFigurita3;
-
-    @FXML
-    private Button EliminarFigurita31;
-
-    @FXML
-    private Group Figurita1;
-
-    @FXML
-    private Group Figurita2;
-
-    @FXML
-    private Group Figurita3;
-
-    @FXML
-    private Group Figurita31;
-
-    @FXML
-    private Tab Figuritas;
-
-    @FXML
-    private AnchorPane PanelFiguritas;
-
-    @FXML
-    private TabPane Window;
+    void goToPublicaciones(ActionEvent event) throws IOException, NoSuchAlgorithmException {
+        Stage stage = (Stage) scene.getWindow();
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
+        stage.setScene(scene);
+        stage.show();
+        new PublicationsController().init();
+    }
 
 }

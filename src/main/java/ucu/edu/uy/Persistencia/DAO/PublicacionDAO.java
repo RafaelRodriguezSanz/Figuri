@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 import ucu.edu.uy.Persistencia.PO.PublicacionPO;
@@ -65,6 +67,7 @@ public class PublicacionDAO {
         String query = SQL.getQuery("DT/Publicaciones/CRUD/deletePublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, id);
+        statement.setString(2, id);
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
         DB.getSINGLE_INSTANCE().disconnect();
         statement.close();
@@ -89,5 +92,28 @@ public class PublicacionDAO {
         statement.close();
         DB.getSINGLE_INSTANCE().disconnect();
         return result;
+    }
+
+    public static Collection<PublicacionPO> readAllPublicacion() throws SQLException {
+        Collection<PublicacionPO> publications = new ArrayList<>();
+        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        String query = SQL.getQuery("DT/Publicaciones/readAllPublicacion");
+        PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+        ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
+        DB.getSINGLE_INSTANCE().disconnect();
+        while (result.next()) {
+            PublicacionPO publicacion;
+            publicacion = new PublicacionPO();
+            publicacion.setId_publicacion(result.getString(1).toCharArray());
+            publicacion.setId_figurita_usuario(result.getString(2).toCharArray());
+            publicacion.setId_estado_publicacion(result.getString(3).toCharArray());
+            publicacion.setId_figurita_existente_1(result.getInt(4));
+            publicacion.setId_figurita_existente_2(result.getInt(5));
+            publicacion.setId_figurita_existente_3(result.getInt(6));
+            publicacion.setFecha(result.getDate(7));
+            publications.add(publicacion);
+        }
+        statement.close();
+        return publications;
     }
 }

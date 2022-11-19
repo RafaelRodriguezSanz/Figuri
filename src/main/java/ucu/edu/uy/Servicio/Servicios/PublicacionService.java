@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,6 +15,8 @@ import ucu.edu.uy.Persistencia.DAO.PublicacionDAO;
 import ucu.edu.uy.Persistencia.DAO.UserDAO;
 import ucu.edu.uy.Persistencia.ORM.PostgresORM;
 import ucu.edu.uy.Persistencia.PO.PublicacionPO;
+import ucu.edu.uy.Presentacion.DO.PublicacionDO;
+import ucu.edu.uy.Presentacion.Mappers.PublicacionMapper;
 import ucu.edu.uy.Servicio.DTO.PublicacionDTO;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
@@ -36,10 +40,14 @@ public class PublicacionService {
             String id_figurita_existente_3) {
         Date fecha = new Date(System.currentTimeMillis());
         char[] id = UUID.randomUUID().toString().toCharArray();
-        PublicacionPO publicacion = new PublicacionPO(id, id_figurita_usuario.toCharArray(),
+        PublicacionPO publicacion = new PublicacionPO(
+                id,
+                id_figurita_usuario.toCharArray(),
                 "Activa".toCharArray(),
-                Integer.valueOf(id_figurita_existente_1), Integer.valueOf(id_figurita_existente_2),
-                Integer.valueOf(id_figurita_existente_3), fecha);
+                Integer.valueOf(id_figurita_existente_1),
+                Integer.valueOf(id_figurita_existente_2),
+                Integer.valueOf(id_figurita_existente_3),
+                fecha);
         try {
             return PublicacionDAO.createPublicacion(publicacion);
         } catch (SQLException e) {
@@ -123,6 +131,20 @@ public class PublicacionService {
     public PublicacionPO read(String id_publicacion) throws NoSuchAlgorithmException {
         try {
             return PublicacionDAO.readPublicacion(id_publicacion);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public Collection<PublicacionDO> readAll() throws NoSuchAlgorithmException {
+        try {
+            Collection<PublicacionDO> publicationsConverted = new ArrayList<>();
+            Collection<PublicacionPO> publications = PublicacionDAO.readAllPublicacion();
+            for (PublicacionPO publicacionPO : publications) {
+                PublicacionDO publicacionDO = PublicacionMapper.toDO(PostgresORM.getInstance().toDTO(publicacionPO));
+                publicationsConverted.add(publicacionDO);
+            }
+            return publicationsConverted;
         } catch (SQLException e) {
             return null;
         }
