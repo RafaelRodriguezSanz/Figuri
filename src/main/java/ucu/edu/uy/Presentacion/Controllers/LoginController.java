@@ -26,8 +26,6 @@ import java.awt.Desktop;
 @Getter
 @Setter
 public class LoginController {
-    @FXML
-    private Pane panel;
 
     @FXML
     private Text errorMessage;
@@ -64,8 +62,7 @@ public class LoginController {
         if (logged) {
             System.out.println("Changing UI...");
             Stage stage = (Stage) loginBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
-            Scene scene = new Scene(root);
+            Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
             stage.setScene(scene);
             stage.show();
 
@@ -81,8 +78,7 @@ public class LoginController {
     void registerBtnClicked(ActionEvent event) throws IOException {
         System.out.println("Changing UI...");
         Stage stage = (Stage) loginBtn.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
         stage.setScene(scene);
         stage.show();
     }

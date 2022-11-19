@@ -34,15 +34,15 @@ public class OfertaService {
         return SINGLE_INSTANCE;
     }
 
-    public static String createOferta(String id_publicacion, String... ofertasParam) throws SQLException {
+    public String createOferta(String id_publicacion, String... ofertasParam) throws SQLException {
         if (ofertasParam.length < 4) {
             String[] ofertas = new String[3];
             int i;
             for (i = 0; i < ofertasParam.length; i++) {
                 ofertas[i] = ofertasParam[i];
             }
-            for (int j = i; j < 4; j++) {
-                ofertas[i] = null;
+            for (int j = i; j < 3; j++) {
+                ofertas[j] = null;
             }
             OfertaPO oferta = new OfertaPO(id_publicacion, ofertas);
             OfertaDAO.createOferta(oferta);
@@ -52,7 +52,7 @@ public class OfertaService {
         }
     }
 
-    public static boolean deleteOferta(String id) {
+    public boolean deleteOferta(String id) {
         try {
             return OfertaDAO.deleteOferta(id);
         } catch (SQLException e) {
@@ -60,7 +60,15 @@ public class OfertaService {
         }
     }
 
-    public static String changeOferta(String id_publicacion, String... ofertasParam) throws SQLException {
+    public OfertaPO readOferta(String id) {
+        try {
+            return OfertaDAO.readOferta(id);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public String changeOferta(String id_publicacion, String... ofertasParam) throws SQLException {
         if (ofertasParam.length < 4) {
             String[] ofertas = new String[3];
             int i;

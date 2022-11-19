@@ -19,8 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
 public class App extends Application {
-    @FXML
-    private AnchorPane ap;
 
     public static void main(String[] args)
             throws InterruptedException, FIPAException, StaleProxyException, ControllerException {

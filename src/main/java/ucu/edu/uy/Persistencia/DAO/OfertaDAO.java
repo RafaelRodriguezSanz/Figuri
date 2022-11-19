@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 import ucu.edu.uy.Persistencia.PO.OfertaPO;
@@ -25,8 +26,16 @@ public class OfertaDAO {
             statement.setString(1, new String(oferta.getId_oferta()));
             statement.setString(2, new String(oferta.getId_publicacion()));
             statement.setString(3, new String(oferta.getId_publicacion1()));
-            statement.setString(4, new String(oferta.getId_publicacion2()));
-            statement.setString(5, new String(oferta.getId_publicacion3()));
+            if (Objects.nonNull(oferta.getId_publicacion2())) {
+                statement.setString(4, new String(oferta.getId_publicacion2()));
+            } else {
+                statement.setString(4, null);
+            }
+            if (Objects.nonNull(oferta.getId_publicacion3())) {
+                statement.setString(5, new String(oferta.getId_publicacion3()));
+            } else {
+                statement.setString(5, null);
+            }
             statement.setDate(6, fecha);
             DB.getSINGLE_INSTANCE().executeQuery(statement);
             statement.close();
@@ -53,8 +62,17 @@ public class OfertaDAO {
         oferta.setId_oferta(result.getString(1).toCharArray());
         oferta.setId_publicacion(result.getString(2).toCharArray());
         oferta.setId_publicacion1(result.getString(3).toCharArray());
-        oferta.setId_publicacion2(result.getString(4).toCharArray());
-        oferta.setId_publicacion3(result.getString(5).toCharArray());
+        if (Objects.nonNull(result.getString(4))) {
+            oferta.setId_publicacion2(result.getString(4).toCharArray());
+        } else {
+            oferta.setId_publicacion2(null);
+        }
+        if (Objects.nonNull(result.getString(5))) {
+            oferta.setId_publicacion3(result.getString(5).toCharArray());
+        } else {
+            oferta.setId_publicacion3(null);
+        }
+
         oferta.setFecha(result.getDate(6));
         statement.close();
         return oferta;
@@ -80,8 +98,16 @@ public class OfertaDAO {
         statement.setString(1, new String(oferta.getId_oferta()));
         statement.setString(2, new String(oferta.getId_publicacion()));
         statement.setString(3, new String(oferta.getId_publicacion1()));
-        statement.setString(4, new String(oferta.getId_publicacion2()));
-        statement.setString(5, new String(oferta.getId_publicacion3()));
+        if (Objects.nonNull(oferta.getId_publicacion2())) {
+            statement.setString(4, new String(oferta.getId_publicacion2()));
+        } else {
+            statement.setString(4, null);
+        }
+        if (Objects.nonNull(oferta.getId_publicacion3())) {
+            statement.setString(5, new String(oferta.getId_publicacion3()));
+        } else {
+            statement.setString(5, null);
+        }
         statement.setDate(6, fecha);
 
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
