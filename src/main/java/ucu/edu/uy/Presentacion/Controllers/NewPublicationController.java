@@ -20,7 +20,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.Setter;
-import ucu.edu.uy.Jade.Utils.Session;
+import ucu.edu.uy.jade.Utils.Session;
 import java.awt.Desktop;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;

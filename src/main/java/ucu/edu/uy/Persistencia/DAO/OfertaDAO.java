@@ -18,7 +18,7 @@ public class OfertaDAO {
         try {
             readOferta(new String(oferta.getId_oferta()));
         } catch (Exception e) {
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/Ofertas/CRUD/createOferta");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             Date fecha = new Date(System.currentTimeMillis());
@@ -52,7 +52,7 @@ public class OfertaDAO {
     public static OfertaPO readOferta(String id) throws SQLException {
         OfertaPO oferta;
         oferta = new OfertaPO();
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Ofertas/CRUD/readOferta");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, id);
@@ -79,7 +79,7 @@ public class OfertaDAO {
     }
 
     public static boolean deleteOferta(String id) throws SQLException {
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Ofertas/CRUD/deleteOferta");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, id);
@@ -92,7 +92,7 @@ public class OfertaDAO {
     public static boolean updateOferta(OfertaPO oferta) throws SQLException {
         readOferta(new String(oferta.getId_oferta()));
         Date fecha = new Date(System.currentTimeMillis());
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Ofertas/CRUD/updateOferta");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, new String(oferta.getId_oferta()));

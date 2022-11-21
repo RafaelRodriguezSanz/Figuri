@@ -19,7 +19,7 @@ public class UserDAO {
         try {
             readUser(user.getCi());
         } catch (UserNotFoundException e) {
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/Usuarios/CRUD/createUsuario");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             statement.setInt(1, user.getCi());
@@ -44,7 +44,7 @@ public class UserDAO {
         UserPO user;
         try {
             user = new UserPO();
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/Usuarios/CRUD/readUsuario");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             statement.setInt(1, Integer.valueOf(ci));
@@ -65,7 +65,7 @@ public class UserDAO {
 
     public static boolean updateUser(UserPO user) throws SQLException {
         readUser(user.getCi());
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Usuarios/CRUD/updateUsuario");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setInt(1, user.getCi());
@@ -82,7 +82,7 @@ public class UserDAO {
 
     public static boolean deleteUser(int ci) throws SQLException {
         readUser(ci);
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Usuarios/CRUD/deleteUsuario");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setInt(1, ci);
