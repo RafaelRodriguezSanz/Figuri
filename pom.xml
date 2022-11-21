@@ -32,6 +32,14 @@
         <role>Developer</role>
       </roles>
     </developer>
+    <developer>
+      <name>AlejandraSosaDias</name>
+      <organization>UCUDAL</organization>
+      <email>maria.sosadias@correo.ucu.edu.uy</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
   </developers>
   <packaging>jar</packaging>
   <properties>
