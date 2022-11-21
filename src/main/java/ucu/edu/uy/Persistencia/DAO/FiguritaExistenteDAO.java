@@ -18,7 +18,7 @@ public class FiguritaExistenteDAO {
         FiguritaExistentePO figuritaExistente;
         try {
             figuritaExistente = new FiguritaExistentePO();
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/FiguritasExistentes/CRUD/readFiguritasExistente");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             statement.setInt(1, numero);

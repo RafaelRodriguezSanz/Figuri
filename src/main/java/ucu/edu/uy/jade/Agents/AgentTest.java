@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Agents;
+package ucu.edu.uy.jade.Agents;
 
 import jade.core.AID;
 import jade.core.Agent;
@@ -9,8 +9,8 @@ import jade.domain.FIPAAgentManagement.AMSAgentDescription;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
-import ucu.edu.uy.Jade.Messages.Message;
-import ucu.edu.uy.Jade.Utils.Session;
+import ucu.edu.uy.jade.Messages.Message;
+import ucu.edu.uy.jade.Utils.Session;
 
 import java.io.IOException;
 import java.util.StringJoiner;
