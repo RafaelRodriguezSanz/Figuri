@@ -44,7 +44,7 @@ public class PublicacionDAO {
     public static PublicacionPO readPublicacion(String id) throws SQLException {
         PublicacionPO publicacion;
         publicacion = new PublicacionPO();
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Publicaciones/CRUD/readPublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, id);
@@ -84,7 +84,7 @@ public class PublicacionDAO {
 
     public static boolean updatePublicacion(PublicacionPO publicacion) throws SQLException {
         readPublicacion(new String(publicacion.getId_publicacion()));
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Publicaciones/CRUD/updatePublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, new String(publicacion.getId_publicacion()));
@@ -104,7 +104,7 @@ public class PublicacionDAO {
 
     public static Collection<PublicacionPO> readAllPublicacion() throws SQLException {
         Collection<PublicacionPO> publications = new ArrayList<>();
-        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Publicaciones/readAllPublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);

@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Utils;
+package ucu.edu.uy.jade.Utils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
-import ucu.edu.uy.Jade.Utils.Session;
+import ucu.edu.uy.jade.Utils.Session;
 
 public class Session {
     private static final Session SINGLE_INSTANCE = new Session();

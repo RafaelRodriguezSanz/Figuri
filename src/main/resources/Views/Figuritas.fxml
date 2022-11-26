@@ -5,22 +5,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Scene fx:id="scene" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.FiguritasController">
+<Scene fx:id="scene" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.FiguritasController">
    <root>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="715.0">
          <children>
             <Button fx:id="agregarBtn" layoutX="81.0" layoutY="146.0" mnemonicParsing="false" onAction="#addFigurita" prefHeight="25.0" prefWidth="93.0" text="Agregar" />
             <MenuButton fx:id="estadoBtn" alignment="CENTER" layoutX="81.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Estado">
                <items>
-                  <RadioMenuItem mnemonicParsing="false" text="Excelente" />
-                  <RadioMenuItem mnemonicParsing="false" text="Bueno" />
-                  <RadioMenuItem mnemonicParsing="false" text="Malo" />
-                  <RadioMenuItem mnemonicParsing="false" text="Pésimo" />
+                <MenuItem mnemonicParsing="false" onAction="#SeleccionoExcelente" text="Excelente" />
+		         <MenuItem mnemonicParsing="false" onAction="#SeleccionoBueno" text="Bueno" />
+		         <MenuItem mnemonicParsing="false" onAction="#SeleccionoMalo" text="Malo" />
+		         <MenuItem mnemonicParsing="false" onAction="#SeleccionoPesimo" text="Pesimo" />
                </items>
             </MenuButton>
             <ListView fx:id="figuritasDisponibles" layoutX="451.0" layoutY="58.0" prefHeight="243.0" prefWidth="198.0" />
@@ -42,6 +43,8 @@
                </font>
             </Label>
             <Button fx:id="borrarBtn" layoutX="81.0" layoutY="112.0" mnemonicParsing="false" onAction="#deleteFigurita" prefHeight="25.0" prefWidth="93.0" text="Borrar" />
+            <TextField fx:id="idFiguritaExistente" layoutX="72.0" layoutY="216.0" prefHeight="26.0" prefWidth="112.0" promptText="Ingrese el numero" />
+            <Text layoutX="14.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero figurita" wrappingWidth="54.638671875" />
          </children>
       </Pane>
    </root>

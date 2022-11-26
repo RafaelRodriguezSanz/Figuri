@@ -10,7 +10,7 @@ import lombok.Getter;
 
 public class DB {
 
-    private static final String dbName = "test";
+    private static final String dbName = "Figuri";
 
     @Getter
     private Connection connection;
@@ -19,7 +19,7 @@ public class DB {
     private static final DB SINGLE_INSTANCE = new DB();
 
     @Getter
-    private String url = "jdbc:postgresql://192.168.9.133:5432/";
+    private String url = "jdbc:postgresql://192.168.56.102:5432/";
 
     private DB() {
     }
@@ -34,7 +34,7 @@ public class DB {
     }
 
     public void connect(String dbName) throws SQLException {
-        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "admin");
+        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "123456");
         if (this.isConnected()) {
             System.out.println("Database was connected Successfully!");
         } else {
@@ -43,7 +43,7 @@ public class DB {
     }
 
     public void connect() throws SQLException {
-        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "admin");
+        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "123456");
         if (this.isConnected()) {
             System.out.println("Database was connected Successfully!");
         } else {
