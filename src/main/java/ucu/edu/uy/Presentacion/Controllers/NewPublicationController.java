@@ -47,9 +47,9 @@ public class NewPublicationController {
 
     @FXML
     void goToPublicaciones(ActionEvent event) throws IOException {
-        Stage stage = (Stage) scene.getWindow();
-        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publicaciones.fxml"));
-        stage.setScene(scene);
+        Stage stage = (Stage) atrasBtn.getScene().getWindow();
+        Scene newScene = FXMLLoader.load(getClass().getResource("/Views/Publicaciones.fxml"));
+        stage.setScene(newScene);
         stage.show();
     }
 

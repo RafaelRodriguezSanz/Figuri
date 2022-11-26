@@ -76,7 +76,6 @@ public class LoginController {
 
     @FXML
     void registerBtnClicked(ActionEvent event) throws IOException {
-        System.out.println("Changing UI...");
         Stage stage = (Stage) loginBtn.getScene().getWindow();
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
         stage.setScene(scene);

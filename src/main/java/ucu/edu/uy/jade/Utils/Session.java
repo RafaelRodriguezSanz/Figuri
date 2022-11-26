@@ -20,6 +20,12 @@ public class Session {
     @Getter
     @Setter
     String id;
+    @Getter
+    @Setter
+    String publicationID;
+    @Getter
+    @Setter
+    String offerId;
 
     private Session() {
         this.id = null;

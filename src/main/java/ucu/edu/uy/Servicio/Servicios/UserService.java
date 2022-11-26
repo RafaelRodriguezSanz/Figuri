@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.identityconnectors.common.security.GuardedString;
 
+import ucu.edu.uy.Jade.Utils.Session;
 import ucu.edu.uy.Persistencia.DAO.UserDAO;
 import ucu.edu.uy.Persistencia.ORM.PostgresORM;
 import ucu.edu.uy.Servicio.DTO.UserDTO;

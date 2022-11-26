@@ -1,2 +1,2 @@
-INSERT INTO "OFERTAS"(id_oferta, "id_publicación", "id_publicación1", "id_publicación2", "id_publicación3", fecha)
+INSERT INTO "OFERTAS"(id_oferta, "id_publicacion", "id_publicacion1", "id_publicacion2", "id_publicacion3", fecha)
 VALUES (?, ?, ?, ?, ?, ?);

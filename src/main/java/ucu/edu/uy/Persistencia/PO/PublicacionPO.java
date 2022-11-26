@@ -17,7 +17,7 @@ public class PublicacionPO {
     char[] id_publicacion;
     char[] id_figurita_usuario;
     char[] id_estado_publicacion;
-    int id_figurita_existente_1;
+    Integer id_figurita_existente_1;
     Integer id_figurita_existente_2;
     Integer id_figurita_existente_3;
     Date fecha;
