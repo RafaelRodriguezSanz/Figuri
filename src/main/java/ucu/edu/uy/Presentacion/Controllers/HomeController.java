@@ -51,7 +51,6 @@ public class HomeController {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
         stage.setScene(scene);
         stage.show();
-        new PublicationsController().init();
     }
 
 }

@@ -23,4 +23,11 @@ public class FiguritaExistenteService {
         FiguritaExistenteDTO figuritaDto = PostgresORM.getInstance().toDTO(figurita);
         return FiguritaExistenteMapper.toDO(figuritaDto);
     }
+
+    public static FiguritaExistenteDO getFigurita(Integer id_figurita_existente) {
+        FiguritaExistentePO figurita = FiguritaExistenteDAO
+                .readFiguritaExistente(Integer.valueOf(id_figurita_existente));
+        FiguritaExistenteDTO figuritaDto = PostgresORM.getInstance().toDTO(figurita);
+        return FiguritaExistenteMapper.toDO(figuritaDto);
+    }
 }

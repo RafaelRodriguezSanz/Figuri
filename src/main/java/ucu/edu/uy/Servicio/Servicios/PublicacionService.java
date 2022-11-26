@@ -57,8 +57,7 @@ public class PublicacionService {
 
     public boolean delete(String id_publicacion) throws NoSuchAlgorithmException {
         try {
-            PublicacionDAO.deletePublicacion(id_publicacion);
-            return true;
+            return PublicacionDAO.deletePublicacion(id_publicacion);
         } catch (SQLException e) {
             return false;
         }

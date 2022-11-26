@@ -75,15 +75,15 @@ CREATE TABLE IF NOT EXISTS "PUBLICACIONES"
 CREATE TABLE IF NOT EXISTS "OFERTAS"
 (
     id_oferta text NOT NULL,
-    id_publicación text NOT NULL,
-    id_publicación1 text NOT NULL, 
-    id_publicación2 text, 
-    id_publicación3 text,
+    id_publicacion text NOT NULL,
+    id_publicacion1 text NOT NULL, 
+    id_publicacion2 text, 
+    id_publicacion3 text,
     fecha date NOT NULL,
-    FOREIGN KEY (id_publicación) REFERENCES "PUBLICACIONES"(id_publicacion),
-    FOREIGN KEY (id_publicación1) REFERENCES "PUBLICACIONES"(id_publicacion),
-    FOREIGN KEY (id_publicación2) REFERENCES "PUBLICACIONES"(id_publicacion),
-    FOREIGN KEY (id_publicación3) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicacion) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicacion1) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicacion2) REFERENCES "PUBLICACIONES"(id_publicacion),
+    FOREIGN KEY (id_publicacion3) REFERENCES "PUBLICACIONES"(id_publicacion),
     PRIMARY KEY (id_oferta)
 );
 
