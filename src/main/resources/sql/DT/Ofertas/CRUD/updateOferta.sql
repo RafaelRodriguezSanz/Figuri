@@ -1,3 +1,3 @@
 UPDATE "OFERTAS"
-SET id_oferta=?, "id_publicación"=?, "id_publicación1"=?, "id_publicación2"=?, "id_publicación3"=?, fecha=?
+SET id_oferta=?, "id_publicacion"=?, "id_publicacion1"=?, "id_publicacion2"=?, "id_publicacion3"=?, fecha=?
 WHERE id_oferta = ?;

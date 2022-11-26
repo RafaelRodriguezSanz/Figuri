@@ -1,5 +1,5 @@
 DELETE FROM "OFERTAS"
-	WHERE id_publicación IN 
+	WHERE id_publicacion IN 
 		(SELECT id_publicacion
 		FROM "PUBLICACIONES"
 		WHERE id_figurita_usuario IN 

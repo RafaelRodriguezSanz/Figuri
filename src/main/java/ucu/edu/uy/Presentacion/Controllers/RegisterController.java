@@ -46,6 +46,9 @@ public class RegisterController {
     private TextField telefono;
 
     @FXML
+    private Scene scene;
+
+    @FXML
     void switchToLogin(ActionEvent event) throws IOException {
         Stage stage = (Stage) nombre.getScene().getWindow();
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));

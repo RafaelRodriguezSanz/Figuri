@@ -63,12 +63,20 @@ public class PublicacionDAO {
     }
 
     public static boolean deletePublicacion(String id) throws SQLException {
-        DB.getSINGLE_INSTANCE().connect("Figuri");
+        System.out.println("Deleting: " + id);
+        DB.getSINGLE_INSTANCE().connect("FiguriTest");
         String query = SQL.getQuery("DT/Publicaciones/CRUD/deletePublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+        System.out.println(statement.toString());
         statement.setString(1, id);
         statement.setString(2, id);
-        boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
+        boolean result = false;
+        try {
+            result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Deleted: " + result);
         DB.getSINGLE_INSTANCE().disconnect();
         statement.close();
         return result;
@@ -101,7 +109,8 @@ public class PublicacionDAO {
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
         DB.getSINGLE_INSTANCE().disconnect();
-        while (result.next()) {
+        boolean continues = true;
+        while (continues) {
             PublicacionPO publicacion;
             publicacion = new PublicacionPO();
             publicacion.setId_publicacion(result.getString(1).toCharArray());
@@ -112,6 +121,7 @@ public class PublicacionDAO {
             publicacion.setId_figurita_existente_3(result.getInt(6));
             publicacion.setFecha(result.getDate(7));
             publications.add(publicacion);
+            continues = result.next();
         }
         statement.close();
         return publications;

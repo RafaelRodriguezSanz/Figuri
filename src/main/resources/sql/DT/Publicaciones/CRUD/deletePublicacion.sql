@@ -1,9 +1,9 @@
 DELETE FROM "OFERTAS"
-	WHERE id_publicación IN 
-		(SELECT id_publicación
+	WHERE id_publicacion IN 
+		(SELECT id_publicacion
 		FROM "OFERTAS"
 		INTERSECT  
-		SELECT id_publicación
+		SELECT id_publicacion
 		FROM "PUBLICACIONES"
 		WHERE id_publicacion = ? );
 
