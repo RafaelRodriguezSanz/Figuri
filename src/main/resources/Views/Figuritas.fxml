@@ -6,9 +6,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <Scene fx:id="scene" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.FiguritasController">
    <root>
@@ -17,10 +17,13 @@
             <Button fx:id="agregarBtn" layoutX="81.0" layoutY="146.0" mnemonicParsing="false" onAction="#addFigurita" prefHeight="25.0" prefWidth="93.0" text="Agregar" />
             <MenuButton fx:id="estadoBtn" alignment="CENTER" layoutX="81.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="93.0" text="Estado">
                <items>
-                  <RadioMenuItem mnemonicParsing="false" text="Excelente" />
-                  <RadioMenuItem mnemonicParsing="false" text="Bueno" />
-                  <RadioMenuItem mnemonicParsing="false" text="Malo" />
-                  <RadioMenuItem mnemonicParsing="false" text="Pésimo" />
+                  <RadioMenuItem mnemonicParsing="false" text="Excelente">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="StateGroup" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" text="Bueno" toggleGroup="$StateGroup" />
+                  <RadioMenuItem mnemonicParsing="false" text="Malo" toggleGroup="$StateGroup" />
+                  <RadioMenuItem mnemonicParsing="false" text="Pésimo" toggleGroup="$StateGroup" />
                </items>
             </MenuButton>
             <ListView fx:id="figuritasDisponibles" layoutX="451.0" layoutY="58.0" prefHeight="243.0" prefWidth="198.0" />

@@ -44,9 +44,9 @@ public class PublicacionService {
                 id,
                 id_figurita_usuario.toCharArray(),
                 "Activa".toCharArray(),
-                Integer.valueOf(id_figurita_existente_1),
-                Integer.valueOf(id_figurita_existente_2),
-                Integer.valueOf(id_figurita_existente_3),
+                id_figurita_existente_1 != null ? Integer.valueOf(id_figurita_existente_1) : null,
+                id_figurita_existente_2 != null ? Integer.valueOf(id_figurita_existente_2) : null,
+                id_figurita_existente_3 != null ? Integer.valueOf(id_figurita_existente_3) : null,
                 fecha);
         try {
             return PublicacionDAO.createPublicacion(publicacion);

@@ -31,7 +31,7 @@ import ucu.edu.uy.Servicio.Servicios.FiguritaDeUsuarioService;
 import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
 import ucu.edu.uy.Servicio.Servicios.PublicacionService;
 
-public class PublicationsController implements Initializable {
+public class ExchangeController implements Initializable {
 
     @FXML
     private Button atrasBtn;

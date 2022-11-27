@@ -35,14 +35,7 @@ public class HomeController {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Figuritas.fxml"));
         stage.setScene(scene);
         stage.show();
-    }
-
-    @FXML
-    void goToIntercambiar(ActionEvent event) throws IOException {
-        Stage stage = (Stage) scene.getWindow();
-        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
-        stage.setScene(scene);
-        stage.show();
+        stage.setTitle("Tus Figuritas");
     }
 
     @FXML
@@ -51,6 +44,16 @@ public class HomeController {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("TUs publicaciones");
+    }
+
+    @FXML
+    void goToIntercambiar(ActionEvent event) throws IOException {
+        Stage stage = (Stage) scene.getWindow();
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Exchange.fxml"));
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Intercambio");
     }
 
 }

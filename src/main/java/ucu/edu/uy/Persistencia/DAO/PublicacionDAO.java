@@ -26,8 +26,14 @@ public class PublicacionDAO {
             statement.setString(2, new String(publicacion.getId_figurita_usuario()));
             statement.setString(3, new String(publicacion.getId_estado_publicacion()));
             statement.setInt(4, Integer.valueOf(publicacion.getId_figurita_existente_1()));
-            statement.setInt(5, Integer.valueOf(publicacion.getId_figurita_existente_2()));
-            statement.setInt(6, Integer.valueOf(publicacion.getId_figurita_existente_3()));
+            statement.setInt(5,
+                    publicacion.getId_figurita_existente_2() != null
+                            ? Integer.valueOf(publicacion.getId_figurita_existente_2())
+                            : null);
+            statement.setInt(6,
+                    publicacion.getId_figurita_existente_3() != null
+                            ? Integer.valueOf(publicacion.getId_figurita_existente_3())
+                            : null);
             statement.setDate(7, fecha);
             DB.getSINGLE_INSTANCE().executeQuery(statement);
             statement.close();
@@ -70,6 +76,9 @@ public class PublicacionDAO {
         System.out.println(statement.toString());
         statement.setString(1, id);
         statement.setString(2, id);
+        statement.setString(3, id);
+        statement.setString(4, id);
+        statement.setString(5, id);
         boolean result = false;
         try {
             result = !DB.getSINGLE_INSTANCE().executeQuery(statement);

@@ -26,9 +26,10 @@ public class OfertsController {
     @FXML
     void goToPublicaciones(ActionEvent event) throws IOException {
         Stage stage = (Stage) scene.getWindow();
-        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publicaciones.fxml"));
+        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Tus Publicaciones");
     }
 
     @FXML

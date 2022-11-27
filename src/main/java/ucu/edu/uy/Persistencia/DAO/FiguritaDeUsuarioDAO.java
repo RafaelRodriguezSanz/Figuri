@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import ucu.edu.uy.Exceptions.FiguritaDeUsuarioAllreadyExistsException;
 import ucu.edu.uy.Exceptions.FiguritaDeUsuarioNotFoundException;
+import ucu.edu.uy.Exceptions.FiguritaExistenteNotFoundException;
 import ucu.edu.uy.Persistencia.PO.FiguritaDeUsuarioPO;
 import ucu.edu.uy.Persistencia.Utils.DB;
 import ucu.edu.uy.Persistencia.Utils.SQL;
@@ -57,15 +60,48 @@ public class FiguritaDeUsuarioDAO {
     }
 
     public static boolean deleteFiguritaDeUsuario(String id_figurita_usuario) throws SQLException {
-        readFiguritaDeUsuario(id_figurita_usuario);
+        FiguritaDeUsuarioPO figurita = readFiguritaDeUsuario(id_figurita_usuario);
+        System.out.println(id_figurita_usuario);
         DB.getSINGLE_INSTANCE().connect("FiguriTest");
         String query = SQL.getQuery("DT/FiguritasDeUsuarios/CRUD/deleteFiguritasDeUsuario");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
         statement.setString(1, id_figurita_usuario);
+        statement.setString(2, id_figurita_usuario);
+        statement.setString(3, id_figurita_usuario);
+        statement.setString(4, id_figurita_usuario);
+        statement.setString(5, id_figurita_usuario);
+        statement.setString(6, id_figurita_usuario);
         boolean result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
         statement.close();
         DB.getSINGLE_INSTANCE().disconnect();
         return result;
+    }
+
+    public static Collection<FiguritaDeUsuarioPO> readAll() {
+        Collection<FiguritaDeUsuarioPO> figuritasDeUsuario = new ArrayList<>();
+        try {
+            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            String query = SQL.getQuery("DT/FiguritasDeUsuarios/readAllFiguritasDeUsuario");
+            PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+            ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
+            DB.getSINGLE_INSTANCE().disconnect();
+
+            boolean continues = true;
+            while (continues) {
+                FiguritaDeUsuarioPO figuritaDeUsuario;
+                figuritaDeUsuario = new FiguritaDeUsuarioPO();
+                figuritaDeUsuario.setId_figurita_usuario(result.getString(1).toCharArray());
+                figuritaDeUsuario.setId_figurita_existente(result.getInt(2));
+                figuritaDeUsuario.setId_estado_figurita(Estado.valueOf(result.getString(3)).ordinal());
+                figuritaDeUsuario.setId_usuario(result.getInt(4));
+                figuritasDeUsuario.add(figuritaDeUsuario);
+                continues = result.next();
+            }
+            statement.close();
+        } catch (Exception e) {
+            throw new FiguritaExistenteNotFoundException();
+        }
+        return figuritasDeUsuario;
     }
 }

@@ -65,6 +65,7 @@ public class LoginController {
             Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
             stage.setScene(scene);
             stage.show();
+            stage.setTitle("Home");
 
             System.out.println("Starting Agent...");
             Session.getInstance().startSession();
@@ -80,6 +81,7 @@ public class LoginController {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("New User Registration");
     }
 
 }

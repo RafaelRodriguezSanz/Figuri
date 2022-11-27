@@ -43,10 +43,10 @@ public class PublicationController implements Initializable {
     void goToPublications(ActionEvent event) throws IOException {
         Session.getInstance().setPublicationID(null);
         Stage stage = (Stage) FiguritasDeseadas.getScene().getWindow();
-        Scene newScene = FXMLLoader.load(getClass().getResource("/Views/Publicaciones.fxml"));
+        Scene newScene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
         stage.setScene(newScene);
         stage.show();
-
+        stage.setTitle("Tus Publicaciones");
     }
 
     @FXML
@@ -55,6 +55,7 @@ public class PublicationController implements Initializable {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Ofert.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Ofertas");
     }
 
     @Override

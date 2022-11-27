@@ -71,14 +71,14 @@ public class PostgresORM {
         char[] tipo = figuritaExistente.getTipo().toCharArray();
         char[] descripcion = figuritaExistente.getDescripcion().toCharArray();
         char[] pais = figuritaExistente.getPais().toCharArray();
-        return new FiguritaExistentePO(numero, tipo, descripcion, pais);
+        return new FiguritaExistentePO(numero, tipo, descripcion, String.valueOf(pais));
     }
 
     public FiguritaExistenteDTO toDTO(FiguritaExistentePO figuritaExistente) {
         Integer numero = figuritaExistente.getId_figurita_existente();
         String tipo = new String(figuritaExistente.getTipo());
         String descripcion = new String(figuritaExistente.getDescripcion());
-        String pais = new String(figuritaExistente.getPais());
+        String pais = figuritaExistente.getPais();
         return new FiguritaExistenteDTO(numero, tipo, descripcion, pais);
     }
 

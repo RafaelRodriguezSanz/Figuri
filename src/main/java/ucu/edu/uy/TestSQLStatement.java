@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import ucu.edu.uy.Presentacion.DO.FiguritaExistenteDO;
 import ucu.edu.uy.Presentacion.DO.PublicacionDO;
 import ucu.edu.uy.Servicio.Servicios.FiguritaDeUsuarioService;
 import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
@@ -33,23 +34,23 @@ public class TestSQLStatement {
                 // "MyPass1234"));
 
                 // System.out.println(FiguritaExistenteService.getInstance().getFigurita("78"));
-                String id = FiguritaDeUsuarioService.getInstance().createFigurita("640", "1",
+                String id = FiguritaDeUsuarioService.getInstance().createFigurita("640", "Excelente",
                                 "5014932-3");
                 // System.out.println(FiguritaDeUsuarioService.getInstance().readFigurita(id));
                 // //
-                // System.out.println(FiguritaDeUsuarioService.getInstance().deleteFigurita(id));
+                System.out.println(FiguritaDeUsuarioService.getInstance().deleteFigurita(id));
 
-                String publicationid = PublicacionService.getInstance().post(id, "1", "2",
-                                "3");
-                String publicationid2 = PublicacionService.getInstance().post(id, "3", "4",
-                                "5");
-                String publicationid3 = PublicacionService.getInstance().post(id, "3", "5",
-                                "6");
-                String publicationid4 = PublicacionService.getInstance().post(id, "3", "6",
-                                "7");
+                // String publicationid = PublicacionService.getInstance().post(id, "1", "2",
+                // "3");
+                // String publicationid2 = PublicacionService.getInstance().post(id, "3", "4",
+                // "5");
+                // String publicationid3 = PublicacionService.getInstance().post(id, "3", "5",
+                // "6");
+                // String publicationid4 = PublicacionService.getInstance().post(id, "3", "6",
+                // "7");
 
-                Collection<PublicacionDO> a = PublicacionService.getInstance().readAll();
-                System.out.println(a.toString());
+                // Collection<PublicacionDO> a = PublicacionService.getInstance().readAll();
+                // System.out.println(a.toString());
                 // System.out.println(publicationid);
                 // System.out.println(PublicacionService.getInstance().read(publicationid));
                 // System.out.println(PublicacionService.getInstance().caducar(publicationid));
@@ -61,11 +62,16 @@ public class TestSQLStatement {
                 // // System.out.println(PublicacionService.getInstance().read(publicationid) ==
                 // // null);
 
-                String ofertaId = OfertaService.getInstance().createOferta(publicationid,
-                                publicationid2,
-                                publicationid3);
-                System.out.println(ofertaId);
-                System.out.println(OfertaService.getInstance().readOferta(ofertaId).toString());
+                // String ofertaId = OfertaService.getInstance().createOferta(publicationid,
+                // publicationid2,
+                // publicationid3);
+                // System.out.println(ofertaId);
+                // System.out.println(OfertaService.getInstance().readOferta(ofertaId).toString());
 
+                // Collection<FiguritaExistenteDO> a =
+                // FiguritaExistenteService.getInstance().readAll();
+                // for (FiguritaExistenteDO b : a) {
+                // System.out.println(b.toString());
+                // }
         }
 }
