@@ -1,26 +1,37 @@
 package ucu.edu.uy.Presentacion.Controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import ucu.edu.uy.Servicio.Servicios.FiguritaDeUsuarioService;
-import javafx.scene.control.TextField;
-import javafx.scene.control.SelectionMode;
+import ucu.edu.uy.Jade.Utils.Session;
 import ucu.edu.uy.Presentacion.DO.FiguritaDeUsuarioDO;
-import ucu.edu.uy.Presentacion.Controllers.LoginController;
+import ucu.edu.uy.Presentacion.DO.FiguritaExistenteDO;
+import ucu.edu.uy.Servicio.Servicios.FiguritaDeUsuarioService;
+import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
+
+public class FiguritasController implements Initializable {
+    @FXML
+    private ToggleGroup StateGroup;
 
 
-public class FiguritasController {
     @FXML
     private Scene scene;
 
@@ -37,56 +48,31 @@ public class FiguritasController {
     private MenuButton estadoBtn;
 
     @FXML
-    private ListView<FiguritaDeUsuarioDO> figuritasDeUsuario;
+    private ListView<String> figuritasDeUsuario;
 
     @FXML
-    private ListView<?> figuritasDisponibles;
-
-    @FXML
-   private TextField idFiguritaExistente;
-   
-   private String estado;
-
-   @FXML
-   void SeleccionoPesimo(ActionEvent event) {
-    estadoBtn.setText("Pesimo");
-    this.estado="3";
-   }
-
-   @FXML
-   void SeleccionoMalo(ActionEvent event) {
-    estadoBtn.setText("Malo");
-    this.estado="2";
-   }
-   @FXML
-   void SeleccionoBueno(ActionEvent event) {
-    estadoBtn.setText("Bueno");
-    this.estado="1";
-   }
-
-   @FXML
-   void SeleccionoExcelente(ActionEvent event) {
-    estadoBtn.setText("Excelente");
-    this.estado="0";
-   }
-
-   //String id_Usuario = LoginController.getUserField().getText();
-
+    private ListView<String> figuritasDisponibles;
 
     @FXML
     void addFigurita(ActionEvent event) {
-       /*  String figurita=FiguritaDeUsuarioService.getInstance().createFigurita(idFiguritaExistente.getText(),estado,id_Usuario);
-        FiguritaDeUsuarioDO figuri= FiguritaDeUsuarioService.getInstance().readFigurita(figurita);
-        figuritasDeUsuario = new ListView<>();
-        ObservableList<FiguritaDeUsuarioDO> lista = FXCollections.observableArrayList(figuri);
-        figuritasDeUsuario.setItems(lista);
-        figur itasDeUsuario.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-       // figuritasDeUsuario.getSelectionModel().selectedItemProperty().addListener();*/
+        String disponibleId = figuritasDisponibles.getSelectionModel().getSelectedItem().split(" - ")[0].trim();
+        String estado = ((MenuItem) StateGroup.getSelectedToggle()).getText();
+        System.out.println(estado);
+        String figuritaId = FiguritaDeUsuarioService.getInstance().createFigurita(disponibleId, estado,
+                Session.getInstance().getId());
+        FiguritaDeUsuarioDO figurita = FiguritaDeUsuarioService.readFigurita(figuritaId);
+        figuritasDeUsuario.getItems().add(figuritaId + " - " + figurita.getDescripcion());
     }
 
     @FXML
-    void deleteFigurita(ActionEvent event) {
-
+    void deleteFigurita(ActionEvent event) throws SQLException {
+        String itemId = figuritasDeUsuario.getSelectionModel().getSelectedItem().split(" - ")[0].trim();
+        int index = figuritasDeUsuario.getSelectionModel().getSelectedIndex();
+        System.out.println(itemId);
+        System.out.println(index);
+        if (FiguritaDeUsuarioService.getInstance().deleteFigurita(itemId)) {
+            figuritasDeUsuario.getItems().remove(index);
+        }
     }
 
     @FXML
@@ -95,10 +81,29 @@ public class FiguritasController {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Home");
     }
 
-    public static void setFiguritas() {
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        Collection<FiguritaExistenteDO> figuritas = FiguritaExistenteService.getInstance().readAll();
+        Collection<String> figuritasConverted = new ArrayList<>();
+        if (figuritas != null) {
+            figuritas.forEach(figurita -> {
+                figuritasConverted.add(figurita.getId_figurita_existente() + " - " + figurita.getDescripcion());
+            });
+        }
+        figuritasDisponibles.getItems().addAll(figuritasConverted);
 
+        Collection<FiguritaDeUsuarioDO> figuritasUsuario = FiguritaDeUsuarioService.getInstance().readAll();
+        Collection<String> figuritasUsuarioConverted = new ArrayList<>();
+        if (figuritasUsuario != null) {
+            figuritasUsuario.forEach(figurita -> {
+                figuritasUsuarioConverted
+                        .add(figurita.getId_figurita_usuario().toString() + " - " + figurita.getDescripcion());
+            });
+        }
+        figuritasDeUsuario.getItems().addAll(figuritasUsuarioConverted);
     }
 
 }

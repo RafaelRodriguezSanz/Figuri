@@ -26,8 +26,14 @@ public class PublicacionDAO {
             statement.setString(2, new String(publicacion.getId_figurita_usuario()));
             statement.setString(3, new String(publicacion.getId_estado_publicacion()));
             statement.setInt(4, Integer.valueOf(publicacion.getId_figurita_existente_1()));
-            statement.setInt(5, Integer.valueOf(publicacion.getId_figurita_existente_2()));
-            statement.setInt(6, Integer.valueOf(publicacion.getId_figurita_existente_3()));
+            statement.setInt(5,
+                    publicacion.getId_figurita_existente_2() != null
+                            ? Integer.valueOf(publicacion.getId_figurita_existente_2())
+                            : null);
+            statement.setInt(6,
+                    publicacion.getId_figurita_existente_3() != null
+                            ? Integer.valueOf(publicacion.getId_figurita_existente_3())
+                            : null);
             statement.setDate(7, fecha);
             DB.getSINGLE_INSTANCE().executeQuery(statement);
             statement.close();
@@ -70,6 +76,9 @@ public class PublicacionDAO {
         System.out.println(statement.toString());
         statement.setString(1, id);
         statement.setString(2, id);
+        statement.setString(3, id);
+        statement.setString(4, id);
+        statement.setString(5, id);
         boolean result = false;
         try {
             result = !DB.getSINGLE_INSTANCE().executeQuery(statement);
@@ -102,11 +111,38 @@ public class PublicacionDAO {
         return result;
     }
 
-    public static Collection<PublicacionPO> readAllPublicacion() throws SQLException {
+    public static Collection<PublicacionPO> readAllPublicacion(int userId) throws SQLException {
         Collection<PublicacionPO> publications = new ArrayList<>();
         DB.getSINGLE_INSTANCE().connect("Figuri");
         String query = SQL.getQuery("DT/Publicaciones/readAllPublicacion");
         PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+        statement.setInt(1, userId);
+        ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
+        DB.getSINGLE_INSTANCE().disconnect();
+        boolean continues = true;
+        while (continues) {
+            PublicacionPO publicacion;
+            publicacion = new PublicacionPO();
+            publicacion.setId_publicacion(result.getString(1).toCharArray());
+            publicacion.setId_figurita_usuario(result.getString(2).toCharArray());
+            publicacion.setId_estado_publicacion(result.getString(3).toCharArray());
+            publicacion.setId_figurita_existente_1(result.getInt(4));
+            publicacion.setId_figurita_existente_2(result.getInt(5));
+            publicacion.setId_figurita_existente_3(result.getInt(6));
+            publicacion.setFecha(result.getDate(7));
+            publications.add(publicacion);
+            continues = result.next();
+        }
+        statement.close();
+        return publications;
+    }
+
+    public static Collection<PublicacionPO> readAllExcept(int userId) throws SQLException {
+        Collection<PublicacionPO> publications = new ArrayList<>();
+        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        String query = SQL.getQuery("DT/Publicaciones/readAllPublicacionExcept");
+        PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+        statement.setInt(1, userId);
         ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
         DB.getSINGLE_INSTANCE().disconnect();
         boolean continues = true;

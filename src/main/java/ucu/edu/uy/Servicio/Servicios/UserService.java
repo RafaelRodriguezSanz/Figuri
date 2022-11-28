@@ -10,6 +10,8 @@ import org.identityconnectors.common.security.GuardedString;
 import ucu.edu.uy.Jade.Utils.Session;
 import ucu.edu.uy.Persistencia.DAO.UserDAO;
 import ucu.edu.uy.Persistencia.ORM.PostgresORM;
+import ucu.edu.uy.Presentacion.DO.UserDO;
+import ucu.edu.uy.Presentacion.Mappers.UserMapper;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
 import ucu.edu.uy.Servicio.POJO.Contrasenia;
@@ -62,5 +64,9 @@ public class UserService {
         } catch (Exception e) {
             return result;
         }
+    }
+
+    public UserDO readUser(int userId) {
+        return UserMapper.toDO(PostgresORM.getInstance().toDTO(UserDAO.readUser(userId)));
     }
 }

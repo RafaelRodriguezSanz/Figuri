@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Scene fx:id="scene" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.PublicationsController">
+<Scene fx:id="scene" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucu.edu.uy.Presentacion.Controllers.ExchangeController">
    <root>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="540.0">
          <children>
@@ -23,7 +23,7 @@
                </contextMenu></ListView>
             <Button fx:id="atrasBtn" layoutX="24.0" layoutY="289.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="25.0" prefWidth="125.0" text="Atrás" />
             <Button fx:id="nuevaBtn" layoutX="24.0" layoutY="251.0" mnemonicParsing="false" onAction="#createPublication" prefHeight="25.0" prefWidth="125.0" text="Nueva Publicación" />
-            <Label fx:id="title" layoutX="24.0" layoutY="18.0" text="Publicaciones">
+            <Label layoutX="24.0" layoutY="18.0" text="Publicaciones">
                <font>
                   <Font size="36.0" />
                </font>

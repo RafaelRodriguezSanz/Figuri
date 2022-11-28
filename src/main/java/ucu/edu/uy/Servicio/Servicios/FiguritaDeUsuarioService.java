@@ -1,6 +1,8 @@
 package ucu.edu.uy.Servicio.Servicios;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 import ucu.edu.uy.Persistencia.DAO.FiguritaDeUsuarioDAO;
@@ -28,10 +30,12 @@ public class FiguritaDeUsuarioService {
 
     public static FiguritaDeUsuarioDO readFigurita(String id_figurita_de_usuario) {
         FiguritaDeUsuarioPO figuritaUsuario = FiguritaDeUsuarioDAO.readFiguritaDeUsuario(id_figurita_de_usuario);
-        FiguritaExistentePO figuritaExistente = FiguritaExistenteDAO
-                .readFiguritaExistente(figuritaUsuario.getId_figurita_existente());
-        return FiguritaDeUsuarioMapper.toDO(PostgresORM.getInstance().toDTO(figuritaUsuario),
-                PostgresORM.getInstance().toDTO(figuritaExistente));
+        return FiguritaDeUsuarioMapper.toDO(PostgresORM.getInstance().toDTO(figuritaUsuario));
+    }
+
+    public static FiguritaDeUsuarioDTO readFiguritaDTO(String id_figurita_de_usuario) {
+        FiguritaDeUsuarioPO figuritaUsuario = FiguritaDeUsuarioDAO.readFiguritaDeUsuario(id_figurita_de_usuario);
+        return PostgresORM.getInstance().toDTO(figuritaUsuario);
     }
 
     public static String createFigurita(String id_figurita_existente, String estado, String id_Usuario) {
@@ -39,7 +43,7 @@ public class FiguritaDeUsuarioService {
         UUID id = UUID.randomUUID();
 
         FiguritaDeUsuarioDTO figuritaDeUsuario = new FiguritaDeUsuarioDTO(id,
-                Integer.valueOf(id_figurita_existente), Estado.values()[Integer.valueOf(estado)],
+                Integer.valueOf(id_figurita_existente), Estado.valueOf(estado),
                 Integer.valueOf(id_Usuario));
         try {
             FiguritaDeUsuarioDAO.createFiguritaDeUsuario(PostgresORM.getInstance().toPO(figuritaDeUsuario));
@@ -54,7 +58,19 @@ public class FiguritaDeUsuarioService {
         try {
             return FiguritaDeUsuarioDAO.deleteFiguritaDeUsuario(id_figurita_de_usuario);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public static Collection<FiguritaDeUsuarioDO> readAll() {
+        Collection<FiguritaDeUsuarioDO> figuritaDeUsuarioConverted = new ArrayList<>();
+        Collection<FiguritaDeUsuarioPO> figuritasDeUsuario = FiguritaDeUsuarioDAO.readAll();
+        for (FiguritaDeUsuarioPO figuritaDeUsuarioPO : figuritasDeUsuario) {
+            FiguritaDeUsuarioDO figuritaDeUsuarioDO = FiguritaDeUsuarioMapper
+                    .toDO(PostgresORM.getInstance().toDTO(figuritaDeUsuarioPO));
+            figuritaDeUsuarioConverted.add(figuritaDeUsuarioDO);
+        }
+        return figuritaDeUsuarioConverted;
     }
 }

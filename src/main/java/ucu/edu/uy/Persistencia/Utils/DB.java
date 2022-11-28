@@ -1,5 +1,6 @@
 package ucu.edu.uy.Persistencia.Utils;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import lombok.Getter;
+import ucu.edu.uy.Jade.Utils.Executor;
 
 public class DB {
 
@@ -19,9 +21,16 @@ public class DB {
     private static final DB SINGLE_INSTANCE = new DB();
 
     @Getter
-    private String url = "jdbc:postgresql://192.168.56.102:5432/";
+    private String url = "jdbc:postgresql://";
 
     private DB() {
+        Executor e = new Executor();
+        try {
+            e.loadProperties();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        this.url = this.url + e.prop.getProperty("host") + ":" + e.prop.getProperty("port") + "/";
     }
 
     public void connect(String dbName, String user, String password) throws SQLException {

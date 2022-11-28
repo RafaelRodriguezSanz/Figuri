@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.StringJoiner;
 
 public class Executor {
-    private Properties prop;
+    public Properties prop;
 
     public Executor() {
         prop = new Properties();
@@ -19,8 +19,9 @@ public class Executor {
 
     public void loadProperties() throws IOException {
         prop = new Properties();
-        URL path = getClass().getResource("/properties/network.properties");
-        File propertiesFile = new File(path.getPath());
+        String basePath = new File("").getAbsolutePath();
+        String path = (new File(basePath + "/network.properties")).getAbsolutePath();
+        File propertiesFile = new File(path);
         InputStream stream = new FileInputStream(propertiesFile.getAbsolutePath().replace("%20", " "));
         prop.load(stream);
     }
