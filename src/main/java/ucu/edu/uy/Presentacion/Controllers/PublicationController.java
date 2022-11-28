@@ -3,6 +3,8 @@ package ucu.edu.uy.Presentacion.Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -16,7 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import ucu.edu.uy.Jade.Utils.Session;
+import ucu.edu.uy.Presentacion.DO.OfertaDO;
 import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
+import ucu.edu.uy.Servicio.Servicios.OfertaService;
 import ucu.edu.uy.Servicio.Servicios.PublicacionService;
 
 public class PublicationController implements Initializable {
@@ -43,10 +47,11 @@ public class PublicationController implements Initializable {
     void goToPublications(ActionEvent event) throws IOException {
         Session.getInstance().setPublicationID(null);
         Stage stage = (Stage) FiguritasDeseadas.getScene().getWindow();
-        Scene newScene = FXMLLoader.load(getClass().getResource("/Views/Publicaciones.fxml"));
+        Scene newScene = FXMLLoader.load(getClass().getResource("/Views/Publications.fxml"));
         stage.setScene(newScene);
         stage.show();
-
+        stage.setTitle("Tus Publicaciones");
+        Session.getInstance().setPublicationID(null);
     }
 
     @FXML
@@ -55,6 +60,7 @@ public class PublicationController implements Initializable {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Ofert.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Oferta");
     }
 
     @Override
@@ -71,8 +77,17 @@ public class PublicationController implements Initializable {
             String f3 = (FiguritaExistenteService.getInstance()
                     .getFigurita(PublicacionService.getInstance().read(idPublicacion).getId_figurita_existente_3()))
                     .toString();
-            this.FiguritasDeseadas.setText(f1 + "\n" + f2 + "\n" + f3 + "\n");
-            // TODO: this.ofertasList.getItems().addAll()
+            FiguritasDeseadas.setText(f1 + "\n" + f2 + "\n" + f3 + "\n");
+            Collection<OfertaDO> ofertas = OfertaService.getInstance()
+                    .readAll(Session.getInstance().getPublicationID());
+            Collection<String> oferasConvertido = new ArrayList<>();
+            if (ofertas != null) {
+                ofertas.forEach(oferta -> {
+                    oferasConvertido.add(oferta.getId_oferta() + " - " + oferta.getId_publicacion1() + '+'
+                            + oferta.getId_publicacion2() + '+' + oferta.getId_publicacion3() + '+');
+                });
+            }
+            ofertasList.getItems().addAll(oferasConvertido);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

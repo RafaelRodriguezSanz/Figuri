@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -114,5 +116,37 @@ public class OfertaDAO {
         statement.close();
         DB.getSINGLE_INSTANCE().disconnect();
         return result;
+    }
+
+    public static Collection<OfertaPO> readAll(String publicationId) throws SQLException {
+        Collection<OfertaPO> ofertas = new ArrayList<>();
+        DB.getSINGLE_INSTANCE().connect("FiguriTest");
+        String query = SQL.getQuery("DT/Ofertas/readAllOferta");
+        PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
+        statement.setString(1, publicationId);
+        ResultSet result = DB.getSINGLE_INSTANCE().executeAction(statement);
+        DB.getSINGLE_INSTANCE().disconnect();
+        boolean continues = true;
+        while (continues) {
+            OfertaPO oferta = new OfertaPO();
+            oferta.setId_oferta(result.getString(1).toCharArray());
+            oferta.setId_publicacion(result.getString(2).toCharArray());
+            oferta.setId_publicacion1(result.getString(3).toCharArray());
+            if (Objects.nonNull(result.getString(4))) {
+                oferta.setId_publicacion2(result.getString(4).toCharArray());
+            } else {
+                oferta.setId_publicacion2(null);
+            }
+            if (Objects.nonNull(result.getString(5))) {
+                oferta.setId_publicacion3(result.getString(5).toCharArray());
+            } else {
+                oferta.setId_publicacion3(null);
+            }
+            oferta.setFecha(result.getDate(6));
+            ofertas.add(oferta);
+            continues = result.next();
+        }
+        statement.close();
+        return ofertas;
     }
 }

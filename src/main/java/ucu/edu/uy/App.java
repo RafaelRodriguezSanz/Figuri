@@ -30,5 +30,6 @@ public class App extends Application {
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Login.fxml"));
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("Login");
     }
 }

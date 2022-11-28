@@ -13,5 +13,6 @@ import lombok.ToString;
 @ToString
 public class FiguritaExistentePO {
     int id_figurita_existente;
-    char[] tipo, descripcion, pais;
+    char[] tipo, descripcion;
+    String pais;
 }
