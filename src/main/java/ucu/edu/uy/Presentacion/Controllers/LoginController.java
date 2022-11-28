@@ -20,8 +20,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import lombok.Getter;
 import lombok.Setter;
-import ucu.edu.uy.Jade.Utils.Session;
+import ucu.edu.uy.jade.Utils.Session;
 import java.awt.Desktop;
+import javafx.scene.Node;
 
 @Getter
 @Setter
@@ -44,6 +45,7 @@ public class LoginController {
 
     @FXML
     private TextField userField;
+
 
     @FXML
     void forgottenPasswordLinkClicked(MouseEvent event) throws IOException, URISyntaxException {
@@ -78,7 +80,9 @@ public class LoginController {
     @FXML
     void registerBtnClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) loginBtn.getScene().getWindow();
-        Scene scene = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
+        Pane root = FXMLLoader.load(getClass().getResource("/Views/Register.fxml"));
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("New User Registration");

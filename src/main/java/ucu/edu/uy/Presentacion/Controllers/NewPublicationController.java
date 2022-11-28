@@ -33,7 +33,6 @@ import ucu.edu.uy.Presentacion.DO.FiguritaExistenteDO;
 import ucu.edu.uy.Servicio.Servicios.FiguritaDeUsuarioService;
 import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
 import ucu.edu.uy.Servicio.Servicios.PublicacionService;
-
 import java.awt.Desktop;
 import javafx.scene.Scene;
 import javafx.fxml.FXML;

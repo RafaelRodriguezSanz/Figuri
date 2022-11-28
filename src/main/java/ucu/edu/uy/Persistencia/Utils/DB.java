@@ -12,7 +12,7 @@ import ucu.edu.uy.Jade.Utils.Executor;
 
 public class DB {
 
-    private static final String dbName = "test";
+    private static final String dbName = "Figuri";
 
     @Getter
     private Connection connection;
@@ -43,7 +43,7 @@ public class DB {
     }
 
     public void connect(String dbName) throws SQLException {
-        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "admin");
+        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "123456");
         if (this.isConnected()) {
             System.out.println("Database was connected Successfully!");
         } else {
@@ -52,7 +52,7 @@ public class DB {
     }
 
     public void connect() throws SQLException {
-        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "admin");
+        this.connection = DriverManager.getConnection(getUrl() + dbName, "postgres", "123456");
         if (this.isConnected()) {
             System.out.println("Database was connected Successfully!");
         } else {

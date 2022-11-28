@@ -1,4 +1,4 @@
-package ucu.edu.uy.Jade.Messages;
+package ucu.edu.uy.jade.Messages;
 
 import java.io.IOException;
 

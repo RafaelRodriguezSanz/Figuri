@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,7 @@ import ucu.edu.uy.Servicio.Servicios.FiguritaExistenteService;
 public class FiguritasController implements Initializable {
     @FXML
     private ToggleGroup StateGroup;
+
 
     @FXML
     private Scene scene;

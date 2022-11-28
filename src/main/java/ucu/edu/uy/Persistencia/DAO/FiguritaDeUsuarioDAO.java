@@ -22,7 +22,7 @@ public class FiguritaDeUsuarioDAO {
         try {
             readFiguritaDeUsuario(String.valueOf(figuritaDeUsuario.getId_figurita_usuario()));
         } catch (FiguritaDeUsuarioNotFoundException e) {
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/FiguritasDeUsuarios/CRUD/createFiguritasDeUsuario");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             statement.setString(1, new String(figuritaDeUsuario.getId_figurita_usuario()));
@@ -41,7 +41,7 @@ public class FiguritaDeUsuarioDAO {
         FiguritaDeUsuarioPO figuritaDeUsuario;
         try {
             figuritaDeUsuario = new FiguritaDeUsuarioPO();
-            DB.getSINGLE_INSTANCE().connect("FiguriTest");
+            DB.getSINGLE_INSTANCE().connect("Figuri");
             String query = SQL.getQuery("DT/FiguritasDeUsuarios/CRUD/readFiguritasDeUsuario");
             PreparedStatement statement = DB.getSINGLE_INSTANCE().getConnection().prepareStatement(query);
             statement.setString(1, id);
