@@ -67,9 +67,9 @@ public class LoginController {
             stage.show();
             stage.setTitle("Home");
 
-            System.out.println("Starting Agent...");
-            Session.getInstance().startSession();
-            System.out.println("Agent Started...");
+            // System.out.println("Starting Agent...");
+            // Session.getInstance().startSession();
+            // System.out.println("Agent Started...");
         } else {
             this.getErrorMessage().setVisible(true);
         }

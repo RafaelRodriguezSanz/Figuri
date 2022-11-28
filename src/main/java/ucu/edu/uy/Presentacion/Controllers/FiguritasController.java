@@ -85,17 +85,21 @@ public class FiguritasController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         Collection<FiguritaExistenteDO> figuritas = FiguritaExistenteService.getInstance().readAll();
         Collection<String> figuritasConverted = new ArrayList<>();
-        figuritas.forEach(figurita -> {
-            figuritasConverted.add(figurita.getId_figurita_existente() + " - " + figurita.getDescripcion());
-        });
+        if (figuritas != null) {
+            figuritas.forEach(figurita -> {
+                figuritasConverted.add(figurita.getId_figurita_existente() + " - " + figurita.getDescripcion());
+            });
+        }
         figuritasDisponibles.getItems().addAll(figuritasConverted);
 
         Collection<FiguritaDeUsuarioDO> figuritasUsuario = FiguritaDeUsuarioService.getInstance().readAll();
         Collection<String> figuritasUsuarioConverted = new ArrayList<>();
-        figuritasUsuario.forEach(figurita -> {
-            figuritasUsuarioConverted
-                    .add(figurita.getId_figurita_usuario().toString() + " - " + figurita.getDescripcion());
-        });
+        if (figuritasUsuario != null) {
+            figuritasUsuario.forEach(figurita -> {
+                figuritasUsuarioConverted
+                        .add(figurita.getId_figurita_usuario().toString() + " - " + figurita.getDescripcion());
+            });
+        }
         figuritasDeUsuario.getItems().addAll(figuritasUsuarioConverted);
     }
 

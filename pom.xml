@@ -276,20 +276,26 @@
               <goal>package</goal>
             </goals>
             <configuration>
-              <name>Agent-Installer</name>
+              <name>Figuri</name>
               <version></version>
+              <organizationName>UCUDAL</organizationName>
               <jrePath>${env.JAVA_HOME}/jre</jrePath>
               <generateSetup>true</generateSetup>
               <generateMsi>true</generateMsi>
               <generateMsm>true</generateMsm>
               <generateInstaller>true</generateInstaller>
               <url>https://github.com/RafaelRodriguezSanz/Figuri/</url>
-              <mainClass>ucu.edu.uy.Agents.AgenteTest</mainClass>
+              <mainClass>ucu.edu.uy.Main</mainClass>
+              <runnableJar>${project.build.directory}/Main.jar</runnableJar>
+              <copyDependencies>true</copyDependencies>
               <platform>windows</platform>
               <bundleJre>true</bundleJre>
               <!-- <iconFile>src/main/deploy/package/windows/icon.ico</iconFile> -->
+              <additionalResources>
+                <additionalResource>src/main/resources/properties/network.properties</additionalResource>
+              </additionalResources>
               <winconfig>
-                <mainClass>ucu.edu.uy.Agents.AgenteTest</mainClass>
+                <mainClass>ucu.edu.uy.Main</mainClass>
                 <administratorRequired>true</administratorRequired>
               </winconfig>
             </configuration>
@@ -337,18 +343,18 @@
             </goals>
             <configuration>
               <target>
-                <move file="${project.build.directory}/Agent-Installer_1.0.exe" tofile="${project.build.directory}/Installers/Agent.exe" />
-                <move file="${project.build.directory}/Agent-Installer_1.0.msi" tofile="${project.build.directory}/Installers/Agent.msi" />
+                <move file="${project.build.directory}/Figuri_1.0.exe" tofile="${project.build.directory}/Installers/Figuri.exe" />
+                <move file="${project.build.directory}/Figuri_1.0.msi" tofile="${project.build.directory}/Installers/Figuri.msi" />
                 <move file="${project.build.directory}/Main_1.0.deb" tofile="${project.build.directory}/Installers/Main.deb" />
                 <move file="${project.build.directory}/Main_1.0.rpm" tofile="${project.build.directory}/Installers/Main.rpm" />
-                <move file="${project.build.directory}/Agent.jar" tofile="${project.build.directory}/Executables/Agent.jar" />
+                <move file="${project.build.directory}/Agent.jar" tofile="${project.build.directory}/Executables/Figuri.jar" />
                 <move file="${project.build.directory}/Main.jar" tofile="${project.build.directory}/Executables/Main.jar" />
                 <!-- <delete file="${project.build.directory}/Agent-Installer-1.0-runnable.jar"/> -->
-                <delete file="${project.build.directory}/Agent-Installer_1.0.msm" />
+                <delete file="${project.build.directory}/Figuri_1.0.msm" />
                 <delete file="${project.build.directory}/Main_1.0.changes" />
                 <delete file="${project.build.directory}/Main_1.0.exe" />
                 <delete file="${project.build.directory}/Main.exe" />
-                <delete file="${project.build.directory}/Agent.exe" />
+                <delete file="${project.build.directory}/Figuri.exe" />
               </target>
             </configuration>
           </execution>

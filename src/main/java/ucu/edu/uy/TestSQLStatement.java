@@ -35,13 +35,13 @@ public class TestSQLStatement {
 
                 // System.out.println(FiguritaExistenteService.getInstance().getFigurita("78"));
                 String id = FiguritaDeUsuarioService.getInstance().createFigurita("640", "Excelente",
-                                "5014932-3");
+                                "4894203-6");
                 // System.out.println(FiguritaDeUsuarioService.getInstance().readFigurita(id));
                 // //
-                System.out.println(FiguritaDeUsuarioService.getInstance().deleteFigurita(id));
+                // System.out.println(FiguritaDeUsuarioService.getInstance().deleteFigurita(id));
 
-                // String publicationid = PublicacionService.getInstance().post(id, "1", "2",
-                // "3");
+                String publicationid = PublicacionService.getInstance().post(id, "1", "2",
+                                "3");
                 // String publicationid2 = PublicacionService.getInstance().post(id, "3", "4",
                 // "5");
                 // String publicationid3 = PublicacionService.getInstance().post(id, "3", "5",

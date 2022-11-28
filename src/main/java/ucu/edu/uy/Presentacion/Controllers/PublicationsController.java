@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
@@ -40,6 +41,9 @@ public class PublicationsController implements Initializable {
     private Button eliminarBtn;
 
     @FXML
+    private Label title;
+
+    @FXML
     private ContextMenu contextMenu;
 
     @FXML
@@ -56,7 +60,7 @@ public class PublicationsController implements Initializable {
 
     @FXML
     void createPublication(ActionEvent event) throws IOException {
-        Stage stage = (Stage) scene.getWindow();
+        Stage stage = (Stage) title.getScene().getWindow();
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/NewPublication.fxml"));
         stage.setScene(scene);
         stage.show();
@@ -76,7 +80,7 @@ public class PublicationsController implements Initializable {
 
     @FXML
     void goToHome(ActionEvent event) throws IOException {
-        Stage stage = (Stage) scene.getWindow();
+        Stage stage = (Stage) title.getScene().getWindow();
         Scene scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
         stage.setScene(scene);
         stage.show();
@@ -101,13 +105,15 @@ public class PublicationsController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            Collection<PublicacionDO> values = PublicacionService.getInstance().readAll();
+            Collection<PublicacionDO> values = PublicacionService.getInstance().readAll(Session.getInstance().getId());
             Collection<String> valuesFormated = new ArrayList<>();
-            values.forEach(value -> {
-                valuesFormated
-                        .add(FiguritaDeUsuarioService.getInstance().readFigurita(value.getId_figurita_usuario())
-                                .getDescripcion() + " - " + value.getId_publicacion());
-            });
+            if (values != null) {
+                values.forEach(value -> {
+                    valuesFormated
+                            .add(FiguritaDeUsuarioService.getInstance().readFigurita(value.getId_figurita_usuario())
+                                    .getDescripcion() + " - " + value.getId_publicacion());
+                });
+            }
             System.out.println(valuesFormated.toString());
             publications.getItems().addAll(valuesFormated);
         } catch (NoSuchAlgorithmException e) {

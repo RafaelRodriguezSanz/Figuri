@@ -33,6 +33,11 @@ public class FiguritaDeUsuarioService {
         return FiguritaDeUsuarioMapper.toDO(PostgresORM.getInstance().toDTO(figuritaUsuario));
     }
 
+    public static FiguritaDeUsuarioDTO readFiguritaDTO(String id_figurita_de_usuario) {
+        FiguritaDeUsuarioPO figuritaUsuario = FiguritaDeUsuarioDAO.readFiguritaDeUsuario(id_figurita_de_usuario);
+        return PostgresORM.getInstance().toDTO(figuritaUsuario);
+    }
+
     public static String createFigurita(String id_figurita_existente, String estado, String id_Usuario) {
         id_Usuario = Validator.cleanNumber(id_Usuario);
         UUID id = UUID.randomUUID();

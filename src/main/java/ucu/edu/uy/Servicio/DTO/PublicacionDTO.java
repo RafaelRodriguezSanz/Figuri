@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -11,6 +12,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class PublicacionDTO {
     String id_publicacion;
     String id_figurita_usuario;

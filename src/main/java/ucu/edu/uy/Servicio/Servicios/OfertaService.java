@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -15,6 +17,8 @@ import ucu.edu.uy.Persistencia.DAO.UserDAO;
 import ucu.edu.uy.Persistencia.ORM.PostgresORM;
 import ucu.edu.uy.Persistencia.PO.OfertaPO;
 import ucu.edu.uy.Persistencia.PO.PublicacionPO;
+import ucu.edu.uy.Presentacion.DO.OfertaDO;
+import ucu.edu.uy.Presentacion.Mappers.OfertaMapper;
 import ucu.edu.uy.Servicio.DTO.PublicacionDTO;
 import ucu.edu.uy.Servicio.DTO.UserDTO;
 import ucu.edu.uy.Servicio.POJO.CI;
@@ -63,6 +67,20 @@ public class OfertaService {
     public OfertaPO readOferta(String id) {
         try {
             return OfertaDAO.readOferta(id);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public Collection<OfertaDO> readAll(String publicationId) {
+        try {
+            Collection<OfertaDO> ofertasConverted = new ArrayList<>();
+            Collection<OfertaPO> ofertas = OfertaDAO.readAll(publicationId);
+            for (OfertaPO ofertaPO : ofertas) {
+                OfertaDO ofertaDO = OfertaMapper.toDO(PostgresORM.getInstance().toDTO(ofertaPO));
+                ofertasConverted.add(ofertaDO);
+            }
+            return ofertasConverted;
         } catch (SQLException e) {
             return null;
         }

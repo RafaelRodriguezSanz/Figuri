@@ -25,6 +25,7 @@ import static ucu.edu.uy.Persistencia.Utils.Encoder.decode;
 import static ucu.edu.uy.Persistencia.Utils.Encoder.encode;
 import ucu.edu.uy.Servicio.POJO.Nombre;
 import ucu.edu.uy.Servicio.POJO.Telefono;
+import ucu.edu.uy.Servicio.POJO.Utils.Validator;
 
 public class PublicacionService {
     private static final PublicacionService SINGLE_INSTANCE = new PublicacionService();
@@ -135,10 +136,26 @@ public class PublicacionService {
         }
     }
 
-    public Collection<PublicacionDO> readAll() throws NoSuchAlgorithmException {
+    public Collection<PublicacionDO> readAll(String userId) throws NoSuchAlgorithmException {
         try {
             Collection<PublicacionDO> publicationsConverted = new ArrayList<>();
-            Collection<PublicacionPO> publications = PublicacionDAO.readAllPublicacion();
+            Collection<PublicacionPO> publications = PublicacionDAO
+                    .readAllPublicacion(Integer.valueOf(Validator.cleanNumber(userId)));
+            for (PublicacionPO publicacionPO : publications) {
+                PublicacionDO publicacionDO = PublicacionMapper.toDO(PostgresORM.getInstance().toDTO(publicacionPO));
+                publicationsConverted.add(publicacionDO);
+            }
+            return publicationsConverted;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public Collection<PublicacionDO> readAllExcept(String userId) throws NoSuchAlgorithmException {
+        try {
+            Collection<PublicacionDO> publicationsConverted = new ArrayList<>();
+            Collection<PublicacionPO> publications = PublicacionDAO
+                    .readAllExcept(Integer.valueOf(Validator.cleanNumber(userId)));
             for (PublicacionPO publicacionPO : publications) {
                 PublicacionDO publicacionDO = PublicacionMapper.toDO(PostgresORM.getInstance().toDTO(publicacionPO));
                 publicationsConverted.add(publicacionDO);

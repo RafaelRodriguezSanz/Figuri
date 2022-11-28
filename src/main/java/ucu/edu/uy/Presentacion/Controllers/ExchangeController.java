@@ -101,13 +101,16 @@ public class ExchangeController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            Collection<PublicacionDO> values = PublicacionService.getInstance().readAll();
+            Collection<PublicacionDO> values = PublicacionService.getInstance()
+                    .readAllExcept(Session.getInstance().getId());
             Collection<String> valuesFormated = new ArrayList<>();
-            values.forEach(value -> {
-                valuesFormated
-                        .add(FiguritaDeUsuarioService.getInstance().readFigurita(value.getId_figurita_usuario())
-                                .getDescripcion() + " - " + value.getId_publicacion());
-            });
+            if (values != null) {
+                values.forEach(value -> {
+                    valuesFormated
+                            .add(FiguritaDeUsuarioService.getInstance().readFigurita(value.getId_figurita_usuario())
+                                    .getDescripcion() + " - " + value.getId_publicacion());
+                });
+            }
             System.out.println(valuesFormated.toString());
             publications.getItems().addAll(valuesFormated);
         } catch (NoSuchAlgorithmException e) {
